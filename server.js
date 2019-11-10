@@ -4,7 +4,8 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const cors = require('cors');
 const app = express();
-const config = require("./config/keys");
+const path = require("path");
+
 // const io = require("socket.io")();
 // const http = require('http');
 app.use(function(req, res, next) {
@@ -39,7 +40,7 @@ if (process.env.NODE_ENV ==="production") {
   
 }
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password123@ds331135.mlab.com:31135/heroku_nr3rvjbl");
 // Connect to MongoDB
 mongoose
   .connect(
