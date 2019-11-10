@@ -12,7 +12,7 @@ class TopNav extends Component {
   };
 
   render() {
-    const { user } = this.props.auth;
+   
 
     return (
 

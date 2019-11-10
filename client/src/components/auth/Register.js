@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
-import LoginModal from "../LoginModal"
-import RegisterModal from "../RegisterModal"
+import LoginModal from "../LoginModal";
+import { withRouter } from 'react-router';
+// import RegisterModal from "../RegisterModal"
 
-import "./Auth.scss";
+// import "./Auth.scss";
 
 class Register extends Component {
   constructor() {
