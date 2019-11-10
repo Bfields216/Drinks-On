@@ -1,0 +1,60 @@
+
+
+  .carousel {
+    
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    height: 100%;
+    overflow:visible;
+    margin-top: 5px;
+    background-color: black;
+}
+.carousel .carousel-inner {
+    height:100%;    
+}
+
+h1 {
+  color: rgb(39, 1, 1);
+  text-emphasis-style: bold;
+}
+
+p {
+  color: rgb(44, 44, 44);
+  text-emphasis: bold;
+}
+
+.btn {
+  margin: 10px;
+  background-color:rgb(27, 0, 0);
+  color: white;
+}
+
+  .welcome {
+    text-align: center;
+    width: 500px;
+    height: 200px;
+    padding: 20px;
+    position: fixed;
+    top: 30%;
+    left: 38%;
+    margin-top: -20px;
+    margin: auto;
+    background: rgba(214, 214, 214, 0.5);
+    color: rgb(44, 44, 44);
+    border-radius: 20px;
+}
+
+
+
+  img {
+    -webkit-transition: -webkit-transform 0.4s; /* Safari */
+    transition: transform 0.4s;
+  }
+  img:hover {
+    -webkit-transform: scale(1.02); /* Safari */
+    transform: scale(1.02);
+  }
+
+
+

@@ -1,0 +1,25 @@
+form.search {
+  overflow: auto;
+  margin-bottom: 10px;
+}
+
+form.search button[type="submit"] {
+  float: right;
+  margin-top: 10px;
+}
+
+/* div {
+position: 'absolute';
+width: 40;
+height: 40;
+left: -40 / 2;
+top: -40 / 2;
+border: '5px solid #f44336';
+border-Radius: 40;
+background-Color: 'white';
+text-Align: 'center';
+color: '#3f51b5';
+font-Size: 16;
+font-Weight: 'bold';
+padding: 4
+}; */

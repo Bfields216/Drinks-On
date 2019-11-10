@@ -1,0 +1,24 @@
+form.search {
+  overflow: auto;
+  margin-bottom: 10px;
+}
+
+form.search button[type="submit"] {
+  float: right;
+  margin-top: 10px;
+}
+
+
+#bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* .navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.navbar-brand>img {
+  padding: 7px 14px;
+} */
