@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3001;
 
 const models = require("./config/keys").MONGODB_URI
 // DB Config
-// const db = require("./config/keys").mongoURI;
+const db = require("./config/keys").mongoURI;
 const users = require("./routes/api/users");
 const drinks = require("./routes/api/drinks");
 // Bodyparser middleware
@@ -28,19 +28,26 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+app.use(bodyParser.json());
+
 if (process.env.NODE_ENV ==="production") {
   app.use(express.static("client/build"));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  })
+  
 }
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://drinks:drinks12@ds129946.mlab.com:29946/heroku_25hpt8pv");
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 // Connect to MongoDB
-// mongoose
-//   .connect(
-//     db,
-//     { useNewUrlParser: true }
-//   )
-//   .then(() => console.log("MongoDB users successfully connected"))
-//   .catch(err => console.log(err));
+mongoose
+  .connect(
+    db,
+    { useNewUrlParser: true }
+  )
+  .then(() => console.log("MongoDB users successfully connected"))
+  .catch(err => console.log(err));
 
   // mongoose
   // .connect(
@@ -60,8 +67,8 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/drinks", drinks)
 
-/
-app.use(express.static(__dirname + "/client/build"));
+
+
 
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "/client/build/index.html"));
