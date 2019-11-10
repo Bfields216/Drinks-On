@@ -10,7 +10,6 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"nodemon server.js\" \"cd client && npm run start\"",
     "seed": "node scripts/seedsDB.js",
-    "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
   "author": "",
