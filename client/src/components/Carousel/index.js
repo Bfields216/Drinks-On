@@ -8,11 +8,12 @@ import RegisterModal from "../RegisterModal"
 
 
 const imageData = [
-  {0: "https://images.unsplash.com/photo-1559629279-9c61598ef63e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"},
-  {1: "https://www.vpr.org/sites/vpr/files/styles/x_large/public/201712/pouring-whiskey-into-glass-with-ice-istock-igorr1.jpg"},
-  {2: "https://images.unsplash.com/photo-1547146598-0962d0d87c97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"},
-  {3: "https://static.vinepair.com/wp-content/uploads/2016/11/cocktailsubs-internal-header.jpg"},
-  {4: "https://www.breslins.co.uk/wp-content/uploads/2019/07/cocktails-promo-1024x536.jpg"},
+   {0: 'assets/slide1.jpg'},
+   {1: 'assets/slide4.jpg'},
+   {2: 'assets/slide1.jpg'},
+   {3: 'assets/slide1.jpg'},
+   {3: 'assets/pic2.jpg'}
+    
   
 ];
 
