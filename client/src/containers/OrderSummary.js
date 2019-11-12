@@ -120,7 +120,7 @@ class OrderSummary extends Component {
         alert("Failed to create: " + err.message)
       });
 
-    this.state.drinks.map((drink, i) => {
+    this.state.drinks.map((drink) => {
       axios
         .delete(`/api/drinks/order-summary/drink/${drink._id}`)
         .then(response => {

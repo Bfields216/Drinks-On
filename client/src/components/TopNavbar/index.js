@@ -17,7 +17,7 @@ class TopNav extends Component {
     return (
 
    <nav className="navbar navbar-expand-lg">
-  <a className="navbar-brand" href="#">Drinks On Us</a>
+  <a className="navbar-brand" href="/">Drinks On Us</a>
 
     <ul className="navbar-nav mr-auto">
   
