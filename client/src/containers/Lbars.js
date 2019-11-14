@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AppNavbar from "../components/AppNavbar";
+
 import NavbarWdivs from "../components/NavbarWdivs";
 import Axios from "axios";
 import GoogleMapReact from "google-map-react";
@@ -91,7 +91,7 @@ class Bars extends Component {
   render() {
     return (
       <>
-      <AppNavbar />
+      
     
       <Jumbotron className="map-container">
     <Container id="map">

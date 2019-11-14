@@ -3,7 +3,7 @@ import axios from "axios";
 import SearchForm from "../components/SearchForm";
 import OrderBtn from "../components/OrderBtn";
 import NavbarWdivs from "../components/NavbarWdivs";
-import AppNavbar from "../components/AppNavbar";
+
 import { Jumbotron } from 'reactstrap';
 import { Container } from "react-bootstrap";
 const cors = require('cors');
@@ -108,7 +108,7 @@ class OrderDrinks extends Component {
   render() {
     return (
       <>
-      <AppNavbar />
+      
         
         <Jumbotron className="list-container">
         <Container className="search">
