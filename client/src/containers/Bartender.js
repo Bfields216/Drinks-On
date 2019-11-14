@@ -3,6 +3,7 @@ import axios from "axios";
 import BarAcceptOrderBtn from "../components/BarAcceptOrderBtn";
 import BarCompleteOrderBtn from "../components/BarCompleteOrderBtn";
 import DrinkInstructions from "../components/DrinkInstructions";
+import { Jumbotron } from 'reactstrap';
 // import { Button } from 'reactstrap'
 
 // import { Link } from "react-router-dom";
@@ -70,7 +71,7 @@ class Bartender extends Component {
 
   render() {
     return (
-      <div>
+      <Jumbotron className="list-container">
         <h1>Drinkson</h1>
         <div className="row">
           <div className="col-md-8">
@@ -151,7 +152,7 @@ class Bartender extends Component {
             ))}
           </div>
         </div>
-      </div>
+        </Jumbotron>
     );
   }
 }

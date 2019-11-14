@@ -4,6 +4,16 @@
   
 }
 
+.topnav {
+  background: rgb(72, 1, 1);
+  
+}
+
+/* .nav {
+  color: white;
+  background-color: black;
+} */
+
 form.search {
     overflow: auto;
     margin-bottom: 10px;
@@ -44,7 +54,9 @@ form.search {
 .jumbotron {
   /* padding: 0; 
   margin: 2rem; */
-   background-color: rgb(233, 236, 239);
+   background-color: rgb(255, 255, 255);
   border-radius: .3rem;
   position: center;
+  margin: 10px;
 }
+

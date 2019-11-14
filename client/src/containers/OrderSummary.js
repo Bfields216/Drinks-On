@@ -138,7 +138,7 @@ class OrderSummary extends Component {
   render() {
     return (
       <>
-        <AppNavbar/>
+      <AppNavbar />
         <Jumbotron className="list-container">
         <Container className="search">
         <h1>Edit Drinks</h1>

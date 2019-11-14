@@ -58,7 +58,7 @@ class AppNavbar extends Component {
 
     return (
       <div>
-        <Navbar color='dark' dark expand='sm' className='mb-5'>
+        <Navbar dark expand='md' className='topnav'>
           <Container>
             <NavbarBrand href='/'>Drink On Us</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />

@@ -110,24 +110,22 @@ class Landing extends React.Component {
   render() {
     return(
     
-      <div> 
+      <>
+      <Container className="welcome">
+      <h1>Welcome to Drinks on Us</h1>
+      <p className="lead">
+      A way for User's to create an Order with a Bartender and Skip the
+      Line.
+      </p>
+
+    </Container>
       <Carousel style={{ height: `100vh`, alignContent: 'center'}} fluid
           imageShow = { this.state.imageShow }
-          />
+          >
           
-          <Container className="welcome">
-          <h1>Welcome to Drinks on Us</h1>
-          <p className="lead">
-          A way for User's to create an Order with a Bartender and Skip the
-          Line.
-          </p>
-          
-         
-          {/* <a href="/login" className="btn btn-light">Log In</a> */}
-         
-        </Container>
-      </div>
-       
+      
+        </Carousel>
+        </>
     );
   }
 }

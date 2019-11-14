@@ -108,7 +108,8 @@ class OrderDrinks extends Component {
   render() {
     return (
       <>
-        <AppNavbar />
+      <AppNavbar />
+        
         <Jumbotron className="list-container">
         <Container className="search">
         <SearchForm
