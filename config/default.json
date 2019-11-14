@@ -1,0 +1,5 @@
+  
+{
+  "mongoURI": "mongodb+srv://drinkondb:drinkon123@mia112-hxtad.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "sl_myJwtSecret"
+}

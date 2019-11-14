@@ -1,14 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const keys = require("../../config/keys");
-const bodyParser = require("body-parser");
+// const auth = require('../../middleware/auth');
 
-// app.use(
-//   bodyParser.urlencoded({
-//     extended: false
-//   })
-// );
-// app.use(bodyParser.json());
 
 // Load User model
 const Drink = require("../../models/Drink");

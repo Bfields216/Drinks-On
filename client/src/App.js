@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import "./App.css";
+import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import NavbarWdivs from "./components/NavbarWdivs";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import jwt_decode from "jwt-decode";
-// import setAuthToken from "./utils/setAuthToken";
+import AppNavbar from './components/AppNavbar';
 
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import OrderDrinks from "./containers/OrderDrinks";
 
 import Checkin from "./containers/Checkin";
@@ -16,16 +15,17 @@ import Bartender from "./containers/Bartender";
 // import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
 import store from "./store";
+import { loadUser } from './actions/authActions';
 
 import Home from "./containers/Home";
 
 
-import Register from "./components/auth/Register";
-import Login from "./components/auth/Login";
+// import Register from "./components/auth/Register";
+// import Login from "./components/auth/Login";
 
 // import Navbar from "./components/Navbars/Navbar";
-import PrivateRoute from "./components/private-route/PrivateRoute";
-import TopNav from "./components/TopNavbar";
+
+// import TopNav from "./components/TopNavbar";
 
 import "./index.css";
 
@@ -49,21 +49,23 @@ import "./index.css";
 //   }
 // }
 class App extends Component {
+  componentDidMount() {
+    store.dispatch(loadUser());
+  }
   render() {
     return (
       
       <Provider store={store}>
         <Router>
-          {/* <Navbar /> */}
+        <AppNavbar />
           
-          
+         
         
           <Route exact path="/" component={Home} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
+  
           <Switch>
-            <PrivateRoute exact path="/TopNav" component={TopNav} />
-            <PrivateRoute exact path="/Bars" component={LocalBars} />
+        
+            <Route exact path="/Bars" component={LocalBars} />
            
             <Route path="/Bartender" component={Bartender} />
             
