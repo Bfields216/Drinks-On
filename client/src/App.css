@@ -4,11 +4,38 @@
   
 }
 
-.topnav {
-  background: rgb(72, 1, 1);
+
+
+#topnav {
+  background-color: rgb(72, 1, 1);
   
 }
 
+.navbar.navbar-dark .navbar-nav .nav-item .nav-link {
+  color: rgb(255, 255, 255);
+  -webkit-transition: .35s;
+  -o-transition: .35s;
+  transition: .35s;
+  margin-top: 0px;
+ 
+  
+}
+
+
+
+.navbar .nav-item {
+    padding-right: 6px;
+    padding-left: 6px;
+    
+}
+
+
+
+.col-sm-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+    background-color: rgb(72, 1, 1);
+}
 /* .nav {
   color: white;
   background-color: black;
@@ -59,4 +86,18 @@ form.search {
   position: center;
   margin: 10px;
 }
+/* 
+// Extra small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
 
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... } */
