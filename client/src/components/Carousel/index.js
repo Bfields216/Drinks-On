@@ -100,7 +100,7 @@ class Landing extends React.Component {
       <hr className="hr-light"/>
       <h4 className="white-text my-4">A way for User's to create an Order with a Bartender and Skip the
       Line.</h4>
-      <Button onClick={this.state} href="/Bars" className="btn btn-outline-white">Tap to see bars near you<i class="fa fa-book ml-2"></i></Button>
+     
 
       
       </div>

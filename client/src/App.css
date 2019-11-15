@@ -1,20 +1,16 @@
-/* * {
+* {
   padding: 0;
   margin: 0;
   
-} */
+}
 
 
 
-.topnav {
+#topnav {
   background-color: rgb(72, 1, 1);
   
 }
 
-/* .dropdowwn {
-  background-color: rgb(72, 1, 1);
-position: relative;
-} */
 .navbar.navbar-dark .navbar-nav .nav-item .nav-link {
   color: rgb(255, 255, 255);
   -webkit-transition: .35s;
@@ -30,7 +26,7 @@ position: relative;
 .navbar .nav-item {
     padding-right: 6px;
     padding-left: 6px;
-    background-color: rgb(72, 1, 1);
+    
 }
 
 
