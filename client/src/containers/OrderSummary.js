@@ -158,7 +158,19 @@ class OrderSummary extends Component {
               <h1>{drink.drinkName}</h1>
               {drink.ingredients.map((ingredient, i) => (
                 <div className="row">
-                  <div className="col-md-8">{ingredient.name}</div>
+                  <div style="text-align: center; margin-top:30px;" className="col-md-8">
+                  {ingredient.name}
+                  <hr className="main-hr" />
+                  <button className="icon-btn add-btn">
+                  <div className="add-icon"></div>
+                  <div className="btn-txt">More</div>
+                </button>
+                <button className="icon-btn add-btn">  
+                  <div className="btn-txt">Less</div>
+                </button>
+                  
+                  
+                  </div>
                   <div className="col-md-1">
                     <Button
                       color="success"
