@@ -3,7 +3,6 @@ import axios from "axios";
 import CheckOutBtn from "../components/CheckOutBtn";
 import { Button } from 'reactstrap';
 import NavbarWdivs from "../components/NavbarWdivs";
-import AppNavbar from "../components/AppNavbar";
 import { Jumbotron } from 'reactstrap';
 import { Container } from "react-bootstrap";
 
@@ -138,7 +137,7 @@ class OrderSummary extends Component {
   render() {
     return (
       <>
-      <AppNavbar />
+     
         <Jumbotron className="list-container">
         <Container className="search">
         <h1>Edit Drinks</h1>

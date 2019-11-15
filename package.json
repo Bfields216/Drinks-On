@@ -28,6 +28,7 @@
     "google-maps-react": "^2.0.2",
     "heroku": "^7.35.0",
     "jsonwebtoken": "^8.5.1",
+    "mdbootstrap": "^4.9.0",
     "mongoose": "^5.3.11",
     "path": "^0.12.7",
     "react-geolocated": "^3.0.1",
