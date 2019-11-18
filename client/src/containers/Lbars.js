@@ -80,20 +80,15 @@ class Bars extends Component {
     
     
     this.setState({currentBars: []});
-    
-   
-    
+  
   }
-
-
 
   render() {
     return (
       <>
-     
+      <div classname="card mb-3">
+      <div classname="card-img-top" id="map">
     
-      <Jumbotron className="map-container">
-    <Container id="map">
           <GoogleMapReact
             bootstrapURLKeys={{
               key: "AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA"
@@ -110,16 +105,13 @@ class Bars extends Component {
               />
             ))}
           </GoogleMapReact>
-          </Container>
-          </Jumbotron>
-
-          <Jumbotron className="list-container">
-          <Container>
-          
+          </div>
+          <div className="card-body">
+    
           <div className="row">
               <div className="col-sm-6">
-                <div className="card">
-                  <div className="card-body">
+               
+                  
                     <h5 class="card-title">Bars Near You</h5>
                     <ListGroup className="list" fluid>
                     <ListGroupItem>
@@ -135,10 +127,10 @@ class Bars extends Component {
                       </ListGroupItem>
                       </ListGroup>
                   </div>
-                </div>
-              </div>
+                
+             
               <div className="col-sm-6">
-                <div className="card">
+  
                   <div className="card-body">
                     <h5 class="card-title">Current Location</h5>
                     <ListGroup className="list" fluid>
@@ -158,9 +150,8 @@ class Bars extends Component {
                 </div>
               </div>
               </div>
-            
-              </Container>
-              </Jumbotron>
+              </div>
+          
       
         <NavbarWdivs />
     </>
