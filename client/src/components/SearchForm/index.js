@@ -5,7 +5,7 @@ import "./style.css";
 function SearchForm(props) {
   return (
     <form className="search">
-      <div className="form-group">
+    <div className="input-group mb-3">
         <label htmlFor="breed"><h4>Search For a Drink</h4></label>
         <input
           value={props.searchQuery}
@@ -17,17 +17,18 @@ function SearchForm(props) {
           placeholder="Type in a drink name or ingredient to begin"
           id="book"
         />
-        {/* <datalist id="books">
-          {props.breeds.map(breed => (
-            <option value={breed} key={breed} />
-          ))}
-        </datalist> */}
-        <button type="submit" onClick={props.handleFormSubmit} className="btn btn-success">
+        <div className="input-group-append">
+        <button type="button" onClick={props.handleFormSubmit} className="btn btn-outline">
           Search
         </button>
       </div>
+      </div>
+     
     </form>
   );
 }
 
 export default SearchForm;
+
+
+
