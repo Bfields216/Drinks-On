@@ -20,11 +20,3 @@ function OrderBtn(props) {
 
 export default OrderBtn;
 
-
-// <li>
-// <div className="name">
-//   <p>Signed in as {name}</p>
-// </div>
-// </li>
-
-// <li onClick={this.onLogoutClick}>Sign Out</li>

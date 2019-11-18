@@ -3,12 +3,8 @@
   margin: 0;
   
 }
-
-
-
 #topnav {
   background-color: rgb(72, 1, 1);
-  
 }
 
 .navbar.navbar-dark .navbar-nav .nav-item .nav-link {
@@ -17,29 +13,16 @@
   -o-transition: .35s;
   transition: .35s;
   margin-top: 0px;
- 
-  
 }
-
-
-
 .navbar .nav-item {
     padding-right: 6px;
-    padding-left: 6px;
-    
+    padding-left: 6px; 
 }
-
-
-
 .col-sm-3 {
     flex: 0 0 25%;
     max-width: 25%;
     background-color: rgb(72, 1, 1);
 }
-/* .nav {
-  color: white;
-  background-color: black;
-} */
 
 form.search {
     overflow: auto;
@@ -50,14 +33,11 @@ form.search {
     float: right;
     margin-top: 10px;
   }
-
-
   #map {
     height: 400px;
     width: 100%;
     position: center;
 }
-
 .map-container {
   width: 80%;
   padding: 5px;
@@ -101,3 +81,81 @@ form.search {
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) { ... } */
+
+
+.main-hr {
+  width: 30%;
+  border: none;
+  border-top: 1px solid #c3c3c3;
+}
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #cdcdcd;
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.2s ease-in-out;
+}
+/* .add-btn:hover {
+  width: 120px;
+} */
+.add-btn {
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 10px;
+  top: calc(50% - 2px);
+  background: red;
+}
+/* .add-btn::after {
+  right: 14px;
+  overflow: hidden;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+} */
+.add-btn{
+  left: 14px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.icon-btn:focus {
+  outline: none;
+}
+/* .btn-txt {
+  opacity: 0;
+  transition: opacity 0.2s;
+} */
+/* .add-btn:hover::before,
+.add-btn:hover::after {
+  width: 4px;
+  border-radius: 2px;
+} */
+/* .add-btn:hover .btn-txt {
+  opacity: 1;
+} */
+
+.add-icon {
+  transition: all 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 2px;
+  top: calc(50% - 10px);
+  background: red;
+  overflow: hidden;
+}
+.add-icon{
+  left: 22px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.add-btn .add-icon{
+  left: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+

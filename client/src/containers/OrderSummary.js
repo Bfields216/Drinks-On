@@ -5,6 +5,11 @@ import { Button } from 'reactstrap';
 import NavbarWdivs from "../components/NavbarWdivs";
 import { Jumbotron } from 'reactstrap';
 import { Container } from "react-bootstrap";
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+
+
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 // import { Link } from "react-router-dom";
 let userId = ""
@@ -155,22 +160,23 @@ class OrderSummary extends Component {
               />
             </div>
             <div className="col-md-8">
-              <h1>{drink.drinkName}</h1>
+              <h2>{drink.drinkName}</h2>
+              <hr className="main-hr" />
+
+          
               {drink.ingredients.map((ingredient, i) => (
                 <div className="row">
-                  <div className="col-md-8">{ingredient.name}</div>
-                  <div className="col-md-1">
-                    <Button
-                      color="success"
+                  <div className="edit">{ingredient.name}
+                  {ingredient.measure}
+                 
+                  <Button className="fas fa-plus-circle"
                       id={index}
                       name={i}
                       value="+"
                       onClick={this.changeMeasure}
                     >
                     </Button>
-                  </div>
-                  <div className="col-md-2">{ingredient.measure}</div>
-                  <div className="col-md-1">
+                  
                     <Button
                       color="success"
                       id={index}
@@ -179,6 +185,7 @@ class OrderSummary extends Component {
                       onClick={this.changeMeasure}
                     >
                     </Button>
+                    
                   </div>
                 </div>
               ))}
