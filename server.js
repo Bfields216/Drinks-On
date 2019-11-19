@@ -4,9 +4,9 @@ const bodyParser = require("body-parser");
 const app = express();
 const config = require('config');
 const path = require('path');
+mongoose.Promise = Promise;
 
-
-
+const port = process.env.PORT || 3001;
 // Bodyparser Middleware
 app.use(express.json());
 
@@ -15,14 +15,18 @@ app.use(express.json());
 
 // const path = require("path");
 
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/savedbooks", {
+useNewUrlParser: true });
+const db = mongoose.connection;
 // Connect to Mongo
-mongoose
-  .connect(process.env.MongoDBURI || "mongodb://drinks12:drinks123@ds337418.mlab.com:37418/heroku_q1jmrgbl",  { 
-    useNewUrlParser: true,
-    useCreateIndex: true
-  }) // Adding new mongo url parser
-  .then(() => console.log('MongoDB Connected...'))
-  .catch(err => console.log(err));
+db.on("error", function(error) {
+  console.log("Mongoose Error: ", error);
+});
+
+db.once('open', function() {
+  console.log("MongoDB database connection successful.");
+})
 
   // Use Routes
 app.use('/api/drinks', require('./routes/api/drinks'));
