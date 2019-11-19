@@ -11,13 +11,13 @@ const path = require('path');
 app.use(express.json());
 
 // DB Config
-const db = config.get('mongoURI');
+// const db = config.get('mongoURI');
 
 // const path = require("path");
 
 // Connect to Mongo
 mongoose
-  .connect(process.env.mongoURI || "mongodb://localhost/db",  { 
+  .connect(process.env.mongoURI || "mongodb://localhost/users",  { 
     useNewUrlParser: true,
     useCreateIndex: true
   }) // Adding new mongo url parser
