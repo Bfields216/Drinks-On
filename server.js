@@ -14,7 +14,7 @@ app.use(express.json());
 // const db = config.get('mongoURI');
 
 // const path = require("path");
-
+const routes = require('./routes');
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/savedbooks", {
 useNewUrlParser: true });
@@ -29,6 +29,7 @@ db.once('open', function() {
 })
 
   // Use Routes
+  app.use(routes);
 app.use('/api/drinks', require('./routes/api/drinks'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
