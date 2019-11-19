@@ -17,7 +17,7 @@ app.use(express.json());
 
 // Connect to Mongo
 mongoose
-  .connect(process.env.mongoURI || "mongodb://localhost/users",  { 
+  .connect(process.env.MongoDBURI || "mongodb://drinks12:drinks123@ds337418.mlab.com:37418/heroku_q1jmrgbl",  { 
     useNewUrlParser: true,
     useCreateIndex: true
   }) // Adding new mongo url parser
