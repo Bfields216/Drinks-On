@@ -16,7 +16,7 @@ app.use(express.json());
 // const path = require("path");
 const routes = require('./routes');
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://drink123:mia123@ds347298.mlab.com:47298/heroku_jbjvkfdk", {
+mongoose.connect(process.env.MONGODB_URI || config, {
 useNewUrlParser: true });
 const db = mongoose.connection;
 // Connect to Mongo

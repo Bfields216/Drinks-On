@@ -1,5 +1,5 @@
 {
-  "mongoURI": "mongodb://drinkondb:drinkon123@ds347298.mlab.com:47298/heroku_trn3x7k0",
+  "mongoURI": "mongodb://mia123:drink123@ds347298.mlab.com:47298/heroku_qbw5jj56",
 
     "jwtSecret": "sl_myJwtSecret"
   }
