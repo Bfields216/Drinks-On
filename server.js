@@ -17,7 +17,7 @@ const db = config.get('mongoURI');
 
 // Connect to Mongo
 mongoose
-  .connect(db,  { 
+  .connect(process.env.mongoURI || "mongodb://localhost/db",  { 
     useNewUrlParser: true,
     useCreateIndex: true
   }) // Adding new mongo url parser
