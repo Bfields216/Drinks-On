@@ -80,14 +80,18 @@ class Bars extends Component {
     
     
     this.setState({currentBars: []});
-  
+    
+   
+    
   }
+
+
 
   render() {
     return (
       <>
-      <div classname="card mb-3">
-      <div classname="card-img-top" id="map">
+     <div classname="card mb-3">
+<div classname="card-img-top" id="map">
     
           <GoogleMapReact
             bootstrapURLKeys={{
@@ -106,12 +110,12 @@ class Bars extends Component {
             ))}
           </GoogleMapReact>
           </div>
-          <div className="card-body">
-    
+         
+          
           <div className="row">
               <div className="col-sm-6">
-               
-                  
+                <div className="card">
+                  <div className="card-body">
                     <h5 class="card-title">Bars Near You</h5>
                     <ListGroup className="list" fluid>
                     <ListGroupItem>
@@ -127,10 +131,10 @@ class Bars extends Component {
                       </ListGroupItem>
                       </ListGroup>
                   </div>
-                
-             
+                </div>
+              </div>
               <div className="col-sm-6">
-  
+                <div className="card">
                   <div className="card-body">
                     <h5 class="card-title">Current Location</h5>
                     <ListGroup className="list" fluid>
@@ -138,7 +142,7 @@ class Bars extends Component {
                     {this.state.currentBars.map((bar, index) => (
                       <div className="row border" key={bar.id}>
                         <div className="col-md-8">
-                          <h5>{bar.name}</h5>
+                          <div className="bar-name">{bar.name}</div>
                           <p>{bar.formatted_address}</p>
                         </div>
                         <CheckoutBtnLB checkout={this.checkout}/>
@@ -150,9 +154,8 @@ class Bars extends Component {
                 </div>
               </div>
               </div>
-              </div>
-          
-      
+            
+</div>
         <NavbarWdivs />
     </>
     );

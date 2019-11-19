@@ -22,3 +22,14 @@ form.search button[type="submit"] {
 .navbar-brand>img {
   padding: 7px 14px;
 } */
+
+a {
+  color: rgb(181, 182, 183);
+  text-decoration: none;
+ 
+}
+
+
+.border {
+  border: none;
+}

@@ -1,7 +1,7 @@
 * {
   padding: 0;
   margin: 0;
-  
+
 }
 #topnav {
   background-color: rgb(72, 1, 1);
@@ -27,6 +27,13 @@
 form.search {
     overflow: auto;
     margin-bottom: 10px;
+  }
+  /* #main {
+    overflow: hidden;
+  
+  } */
+  .list {
+    overflow: scroll;
   }
   
   form.search button[type="submit"] {
@@ -66,22 +73,15 @@ form.search {
   position: center;
   margin: 10px;
 }
-/* 
-// Extra small devices (portrait phones, less than 576px)
-// No media query for `xs` since this is the default in Bootstrap
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) { ... }
+.drink-list {
+  overflow: scroll;
+}
 
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) { ... }
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) { ... }
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) { ... } */
-
+.card-body {
+  margin: 10px;
+  overflow: scroll;
+}
 
 .main-hr {
   width: 30%;
@@ -98,9 +98,7 @@ form.search {
   position: relative;
   transition: width 0.2s ease-in-out;
 }
-/* .add-btn:hover {
-  width: 120px;
-} */
+
 .add-btn {
   transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
   content: "";
@@ -110,12 +108,7 @@ form.search {
   top: calc(50% - 2px);
   background: red;
 }
-/* .add-btn::after {
-  right: 14px;
-  overflow: hidden;
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-} */
+
 .add-btn{
   left: 14px;
   border-top-left-radius: 2px;
@@ -124,18 +117,9 @@ form.search {
 .icon-btn:focus {
   outline: none;
 }
-/* .btn-txt {
-  opacity: 0;
-  transition: opacity 0.2s;
-} */
-/* .add-btn:hover::before,
-.add-btn:hover::after {
-  width: 4px;
-  border-radius: 2px;
-} */
-/* .add-btn:hover .btn-txt {
-  opacity: 1;
-} */
+.row {
+  margin: 0;
+}
 
 .add-icon {
   transition: all 0.2s ease-in-out;
@@ -159,3 +143,46 @@ form.search {
   top: calc(50% - 2px);
 }
 
+
+
+.general-btn {
+  
+	
+	background-color:#570c01;
+	border-radius:42px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:10px 15px;
+	text-decoration:none;
+	
+}
+.general-btn:hover {
+	background-color:#b34332;
+}
+.general-btn:active {
+	position:relative;
+	top:10px;
+}
+
+
+
+/* *****************LBARS/MAP PAGE STYLING*********************************** */
+
+.bar-name {
+  color: #300c08;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 50px;
+  
+}
+
+
+
+
+
+
+
+/* *****************SEARCH/ORDER DRINKS PAGE STYLING*********************************** */
