@@ -10,7 +10,7 @@ function SearchForm(props) {
     <div className="row">
         <div className="col-12">
             <div className="input-group">
-                <input className="form-control border-secondary py-2"  
+                <input 
                 value={props.searchQuery}
                 onChange={props.handleInputChange}
                 name="book"
@@ -22,11 +22,11 @@ function SearchForm(props) {
               />
 
 
-                <div className="input-group-append">
-                    <button onClick={props.handleFormSubmit} className="btn btn-outline-secondary" type="button">
+                <span className="input-group-append">
+                    <button onClick={props.handleFormSubmit} className="btn btn-outline" type="button">
                         Search
                     </button>
-                </div>
+                </span>
             </div>
         </div>
     </div>

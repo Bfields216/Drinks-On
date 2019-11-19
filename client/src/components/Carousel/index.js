@@ -17,35 +17,6 @@ const imageData = [
   
 ];
 
-
-
-// class background extends React.Component {
-//   constructor(props) {
-//     super(props);
-    
-//     this.showImage = this.showImage.bind(this);
-//   }
-  
-//   showImage() {
-//     return (
-//       <img 
-//         alt = "rotating drinks"
-//         src= { imageData[this.props.imageShow][this.props.imageShow] }
-//         style = {{ width: "100%" }} 
-//         />
-//     );
-//   }
-  
-  
-//   render() {
-//     return (
-//       <div className="carousel">
-//         { this.showImage() }
-//       </div>
-//     );
-//   }
-// }
-
 class Landing extends React.Component {
   constructor(){
     super();
@@ -96,10 +67,15 @@ class Landing extends React.Component {
       <div id="background" className="container-fluid d-flex align-items-center justify-content-center">
       <div className="row d-flex justify-content-center text-center">
       <div className="col-md-10">
-      <h2 className="display-4 font-weight-bold white-text pt-5 mb-2">Welcome to Drinks on Us</h2>
+      <h4 className="display-4 white-text pt-5 mb-2">Welcome to Drinks on Us</h4>
       <hr className="hr-light"/>
-      <h4 className="white-text my-4">A way for User's to create an Order with a Bartender and Skip the
-      Line.</h4>
+      <h5 className="white-text my-4">A way for User's to create an Order with a Bartender and Skip the
+      Line.</h5>
+
+      <button className="viewMap">
+         <a className="link" href="/Bars">Tap to view nearby bars.</a>
+         </button>
+        
      
 
       

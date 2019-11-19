@@ -8,15 +8,16 @@ form.search button[type="submit"] {
   margin-top: 10px;
 }
 
-.btn-outline-secondary {
-  border: 2px solid rgb(74, 6, 6)!important;
-  background-color: rgb(82, 1, 1)!important;
-  color: rgb(255, 255, 255)!important;
-}
+
 .input-group {
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  align-items: stretch;
+  
   width: 50%;
+}
+
+.btn:hover {
+  background-color: #ffffff;
+  color: rgb(74, 6, 6) ;
 }
