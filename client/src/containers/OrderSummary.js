@@ -165,12 +165,15 @@ class OrderSummary extends Component {
                 alt={drink.drinkName}
               />
             </div>
-            <div className="col-md-8">
+            <div id="edit-btn" className="col-md-8">
               <h1>{drink.drinkName}</h1>
               {drink.ingredients.map((ingredient, i) => (
-                <div className="row">
-                  <span>{ingredient.name}
-                  <span>
+                <>
+                <p>
+                  {ingredient.name}
+                  
+                  </p>
+                  <div>
                   <FontAwesomeIcon
                   icon={faPlusCircle}
                   size="2x"
@@ -191,14 +194,14 @@ class OrderSummary extends Component {
                             value="-"
                             onClick={() => this.changeMeasure((index),(i),"-")}
                           />
-                      </span>
-                  </span>
-                  </div>
+                          </div>
+                </>
+                         
                
               ))}
               <span className="col-sm-2">
               <button
-              className=" btn btn-danger"
+              className="general-btn"
               id={index}
               onClick={this.removeDrink}
               >

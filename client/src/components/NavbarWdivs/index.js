@@ -25,7 +25,7 @@ function NavbarWdivs(props) {
   return (
 <div className="fixed-bottom">
     <div id="botton-nav" className="row m-0">
-      <a href="/" className="col-sm-3 border text-center h3 p-3 m-0">
+      <a id="link" href="/" className="col-sm-3 border text-center h3 p-3 m-0">
           Home
           <FontAwesomeIcon
               icon={faHome}
@@ -33,7 +33,7 @@ function NavbarWdivs(props) {
               // style={{ '--fa-primary-color': 'red' }}
             />
       </a>
-      <a href="/Bars" className="col-sm-3 border text-center h3 p-3 m-0">
+      <a id="link" href="/Bars" className="col-sm-3 border text-center h3 p-3 m-0">
           Bars
           <FontAwesomeIcon
 
@@ -42,7 +42,7 @@ function NavbarWdivs(props) {
               // style={{ '--fa-primary-color': 'red' }}
             />
       </a>
-      <a href="/OrderDrinks" className="col-sm-3 border text-center h3 p-3 m-0">
+      <a id="link" href="/OrderDrinks" className="col-sm-3 border text-center h3 p-3 m-0">
           Drinks
           <FontAwesomeIcon
 
@@ -52,7 +52,7 @@ function NavbarWdivs(props) {
               // style={{ '--fa-primary-color': 'red' }}
             />
       </a>
-      <a href="/Bartender" className="col-sm-3 border text-center h3 p-3 m-0">
+      <a id="link" href="/Bartender" className="col-sm-3 border text-center h3 p-3 m-0">
       
           <FontAwesomeIcon
 

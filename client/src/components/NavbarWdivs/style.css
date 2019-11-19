@@ -15,21 +15,26 @@ form.search button[type="submit"] {
     width: 100%;
 }
 
-/* .navbar-brand {
-  display: flex;
-  align-items: center;
-}
-.navbar-brand>img {
-  padding: 7px 14px;
-} */
 
-a {
-  color: rgb(181, 182, 183);
-  text-decoration: none;
- 
-}
+
 
 
 .border {
   border: none;
+}
+
+
+#link {
+  cursor:pointer;
+	color: rgb(181, 182, 183);
+  text-decoration: none;
+	font-family:Arial;
+	font-size: 15px;
+
+}
+
+#link:hover {
+  color: #ffffff;
+
+  
 }

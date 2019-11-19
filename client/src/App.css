@@ -125,7 +125,7 @@ form.search {
   transition: all 0.2s ease-in-out;
   content: "";
   position: absolute;
-  height: 20px;
+  height: 10px;
   width: 2px;
   top: calc(50% - 10px);
   background: red;
@@ -139,33 +139,36 @@ form.search {
 
 .add-btn .add-icon{
   left: 15px;
-  height: 4px;
+  height: 3px;
   top: calc(50% - 2px);
 }
 
 
 
 .general-btn {
-  
-	
-	background-color:#570c01;
+
+	background-color:#4b0202ee;
 	border-radius:42px;
-	display:inline-block;
+  display:inline-block;
+ 
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:13px;
-	font-weight:bold;
+	font-size:16px;
 	padding:10px 15px;
 	text-decoration:none;
 	
 }
 .general-btn:hover {
-	background-color:#b34332;
+	background-color:#757575;
 }
 .general-btn:active {
 	position:relative;
 	top:10px;
+}
+
+a {
+  text-decoration:none;
 }
 
 
@@ -186,3 +189,22 @@ form.search {
 
 
 /* *****************SEARCH/ORDER DRINKS PAGE STYLING*********************************** */
+
+
+
+
+
+
+/* *****************EDIT/ORDER DRINKS PAGE STYLING*********************************** */
+
+.edit-btn {
+  display: inline-block;
+  width: 150px;
+  
+  padding:0px 4px;
+}
+
+
+.clearfix {
+  overflow: auto;
+}
