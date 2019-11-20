@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
 
+=======
+>>>>>>> mia
 import NavbarWdivs from "../components/NavbarWdivs";
 import Axios from "axios";
 import GoogleMapReact from "google-map-react";
@@ -7,7 +10,7 @@ import MapFlag from "../components/MapFlag/MapFlag";
 import CheckinBtn from "../components/CheckinBtn";
 import CheckoutBtnLB from "../components/CheckOutBtnLB";
 import API from "../utils/API";
-import {  Jumbotron, Container, ListGroup, ListGroupItem } from 'reactstrap';
+import {  ListGroup, ListGroupItem } from 'reactstrap';
 
 
 
@@ -91,10 +94,13 @@ class Bars extends Component {
   render() {
     return (
       <>
+<<<<<<< HEAD
       
+=======
+     <div classname="card mb-3">
+<div classname="card-img-top" id="map">
+>>>>>>> mia
     
-      <Jumbotron className="map-container">
-    <Container id="map">
           <GoogleMapReact
             bootstrapURLKeys={{
               key: "AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA"
@@ -111,11 +117,8 @@ class Bars extends Component {
               />
             ))}
           </GoogleMapReact>
-          </Container>
-          </Jumbotron>
-
-          <Jumbotron className="list-container">
-          <Container>
+          </div>
+         
           
           <div className="row">
               <div className="col-sm-6">
@@ -147,7 +150,7 @@ class Bars extends Component {
                     {this.state.currentBars.map((bar, index) => (
                       <div className="row border" key={bar.id}>
                         <div className="col-md-8">
-                          <h5>{bar.name}</h5>
+                          <div className="bar-name">{bar.name}</div>
                           <p>{bar.formatted_address}</p>
                         </div>
                         <CheckoutBtnLB checkout={this.checkout}/>
@@ -160,9 +163,7 @@ class Bars extends Component {
               </div>
               </div>
             
-              </Container>
-              </Jumbotron>
-      
+</div>
         <NavbarWdivs />
     </>
     );

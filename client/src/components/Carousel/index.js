@@ -1,6 +1,8 @@
 import React from "react";
 import "./style.css";
-import {Container, Jumbotron} from "react-bootstrap";
+
+// import {Container} from "react-bootstrap"
+
 
 // import {Carousel} from "react-bootstrap-carousel"
 const imageData = [
@@ -11,31 +13,6 @@ const imageData = [
   {4: "https://www.breslins.co.uk/wp-content/uploads/2019/07/cocktails-promo-1024x536.jpg"},
   
 ];
-class Carousel extends React.Component {
-  constructor(props) {
-    super(props);
-    
-    this.showImage = this.showImage.bind(this);
-  }
-  
-  showImage() {
-    return (
-      <img 
-        alt = "rotating drinks"
-        src= { imageData[this.props.imageShow][this.props.imageShow] }
-        style = {{ width: "100%" }} 
-        />
-    );
-  }
-  
-  render() {
-    return (
-      <div className="carousel">
-        { this.showImage() }
-      </div>
-    );
-  }
-}
 class Landing extends React.Component {
   constructor(){
     super();
@@ -74,26 +51,33 @@ class Landing extends React.Component {
   slideShow(){
     setInterval(() => this.next(), 5000);
   }
+ 
   
   render() {
     return(
     
-      <>
-      <Jumbotron  className="list-container">
-      <Container className="welcome">
-      <h1>Welcome to Drinks on Us</h1>
-      <p className="lead">
-      A way for User's to create an Order with a Bartender and Skip the
-      Line.
-      </p>
+      <div id="intro" className="view">
+     
+      <div id="background" className="container-fluid d-flex align-items-center justify-content-center">
+      <div className="row d-flex justify-content-center text-center">
+      <div className="col-md-10">
+      <h4 className="display-4 white-text pt-5 mb-2">Welcome to Drinks on Us</h4>
+      <hr className="hr-light"/>
+      <h5 className="white-text my-4">A way for User's to create an Order with a Bartender and Skip the
+      Line.</h5>
 
-    </Container>
-      <Carousel style={{ height: `100vh`, alignContent: 'center'}} fluid
-          imageShow = { this.state.imageShow }
-          >
-        </Carousel>
-        </Jumbotron>
-        </>
+      <button className="viewMap">
+         <a className="link" href="/Bars">Tap to view nearby bars.</a>
+         </button>
+        
+     
+
+      
+      </div>
+      </div>
+    </div>
+    </div>
+       
     );
   }
 }

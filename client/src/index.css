@@ -13,3 +13,43 @@ code {
     monospace;
 }
 
+.container {
+  margin: 0 auto;
+  /* background: #f2f2f2; */
+  box-sizing: border-box;
+}
+/* Mobile phones (portrait and landscape) ---------- */
+@media screen and (max-width: 767px){
+  .container {
+      width: 100%;
+      padding: 0 10px;
+  }
+}
+/* Tablets and iPads (portrait and landscape) ---------- */
+@media screen and (min-width: 768px) and (max-width: 1023px){
+  .container {
+      width: 750px;
+      padding: 0 10px;
+  }
+}
+/* Low resolution desktops and laptops ---------- */
+@media screen and (min-width: 1024px) {
+  .container {
+      width: 980px;
+      padding: 0 15px;
+  }
+}
+/* High resolution desktops and laptops ---------- */
+@media screen and (min-width: 1280px) {
+  .container {
+      width: 1200px;
+      padding: 0 20px;
+  }
+}
+
+.map-styles {
+  width: 100%;
+  height: 100%;
+};
+
+/* // "mongoURI": "mongodb+srv://drinkondb:drinkon123@mia112-hxtad.mongodb.net/test?retryWrites=true&w=majority", */

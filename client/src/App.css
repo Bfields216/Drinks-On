@@ -1,36 +1,50 @@
 * {
   padding: 0;
   margin: 0;
-  
+
+}
+#topnav {
+  background-color: rgb(72, 1, 1);
 }
 
-.topnav {
-  background: rgb(72, 1, 1);
-  
+.navbar.navbar-dark .navbar-nav .nav-item .nav-link {
+  color: rgb(255, 255, 255);
+  -webkit-transition: .35s;
+  -o-transition: .35s;
+  transition: .35s;
+  margin-top: 0px;
 }
-
-/* .nav {
-  color: white;
-  background-color: black;
-} */
+.navbar .nav-item {
+    padding-right: 6px;
+    padding-left: 6px; 
+}
+.col-sm-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+    background-color: rgb(72, 1, 1);
+}
 
 form.search {
     overflow: auto;
     margin-bottom: 10px;
+  }
+  /* #main {
+    overflow: hidden;
+  
+  } */
+  .list {
+    overflow: scroll;
   }
   
   form.search button[type="submit"] {
     float: right;
     margin-top: 10px;
   }
-
-
   #map {
     height: 400px;
     width: 100%;
     position: center;
 }
-
 .map-container {
   width: 80%;
   padding: 5px;
@@ -60,3 +74,137 @@ form.search {
   margin: 10px;
 }
 
+.drink-list {
+  overflow: scroll;
+}
+
+.card-body {
+  margin: 10px;
+  overflow: scroll;
+}
+
+.main-hr {
+  width: 30%;
+  border: none;
+  border-top: 1px solid #c3c3c3;
+}
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #cdcdcd;
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.2s ease-in-out;
+}
+
+.add-btn {
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 10px;
+  top: calc(50% - 2px);
+  background: red;
+}
+
+.add-btn{
+  left: 14px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.icon-btn:focus {
+  outline: none;
+}
+.row {
+  margin: 0;
+}
+
+.add-icon {
+  transition: all 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 10px;
+  width: 2px;
+  top: calc(50% - 10px);
+  background: red;
+  overflow: hidden;
+}
+.add-icon{
+  left: 22px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.add-btn .add-icon{
+  left: 15px;
+  height: 3px;
+  top: calc(50% - 2px);
+}
+
+
+
+.general-btn {
+
+	background-color:#4b0202ee;
+	border-radius:42px;
+  display:inline-block;
+ 
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	padding:10px 15px;
+	text-decoration:none;
+	
+}
+.general-btn:hover {
+	background-color:#757575;
+}
+.general-btn:active {
+	position:relative;
+	top:10px;
+}
+
+a {
+  text-decoration:none;
+}
+
+
+
+/* *****************LBARS/MAP PAGE STYLING*********************************** */
+
+.bar-name {
+  color: #300c08;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 50px;
+  
+}
+
+
+
+
+
+
+
+/* *****************SEARCH/ORDER DRINKS PAGE STYLING*********************************** */
+
+
+
+
+
+
+/* *****************EDIT/ORDER DRINKS PAGE STYLING*********************************** */
+
+.edit-btn {
+  display: inline-block;
+  width: 150px;
+  
+  padding:0px 4px;
+}
+
+
+.clearfix {
+  overflow: auto;
+}

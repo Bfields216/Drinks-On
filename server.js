@@ -1,32 +1,40 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 const app = express();
-const config = require('config');
+// const config = require('config');
+const path = require('path');
+const DrinksController = require("./controllers/drinks");
+const UsersController = require("./controllers/users");
+const AuthController = require("./controllers/auth");
 
-
+const db = require("./models");
 
 // Bodyparser Middleware
 app.use(express.json());
 
-// DB Config
-const db = config.get('mongoURI');
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-// const path = require("path");
+require("dotenv").config();
 
+mongoose.set("useCreateIndex", true);
 // Connect to Mongo
-mongoose
-  .connect(db, { 
-    useNewUrlParser: true,
-    useCreateIndex: true
-  }) // Adding new mongo url parser
-  .then(() => console.log('MongoDB Connected...'))
-  .catch(err => console.log(err));
+mongoose.connect(process.env.MONGODB_URI,  { useNewUrlParser: true });
+
+const connection = mongoose.connection;
+
+connection.on("connected", () => {
+  console.log("Mongoose connected successfully");
+});
+connection.on("error", err => {
+  console.log("Mongoose default connection error: " + err);
+});
 
   // Use Routes
-app.use('/api/drinks', require('./routes/api/drinks'));
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/auth', require('./routes/api/auth'));
+  app.use('/api/drinks', DrinksController);
+  app.use('/api/users', UsersController);
+  app.use('/api/auth', AuthController);
+  
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
@@ -34,10 +42,12 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
 }
 
-const port = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 
-app.listen(port, () => console.log(`Server started on port ${port}`));
+app.listen(PORT, function() {
+  console.log(`App is running on http://localhost:${PORT}`);
+});

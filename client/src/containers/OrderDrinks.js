@@ -108,44 +108,48 @@ class OrderDrinks extends Component {
   render() {
     return (
       <>
+<<<<<<< HEAD
       
+=======
+   
+>>>>>>> mia
         
         <Jumbotron className="list-container">
-        <Container className="search">
+        <Container fluid className="search fixed">
         <SearchForm
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
-        />
-        <OrderBtn createOrder={this.createOrder} />
+          />
+          <OrderBtn createOrder={this.createOrder} />
         </Container>
         <Container className="drink-list">
         {this.state.drinks.map((drink, index) => (
           <div className="row border" key={drink.idDrink}>
-            <div className="col-md-2 border">
+            <div className="col-md-3 border">
               <img
                 className="w-100"
                 src={drink.strDrinkThumb}
                 alt={drink.strDrink}
               />
             </div>
-            <div className="col-md-6">
-              <h1>{drink.strDrink}</h1>
+            <div className="col-md-8">
+              <h3>{drink.strDrink}</h3>
               <p>
                 <h5>
                   {" "}
                   {drink.strIngredient1}, {drink.strIngredient2},{" "}
                   {drink.strIngredient3}, {drink.strIngredient4}{" "}
                 </h5>
-              </p>
-            </div>
-            <div className="col-md-3">
-              <button
-                className="btn btn-primary btn-large w-100"
+             
+              <button 
+              className="general-btn"
                 id={index}
                 onClick={this.addDrink}
               >
-                Order
+                Add to Order
               </button>
+           
+            </p>
             </div>
             <div
               className="col-md-1"

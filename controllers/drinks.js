@@ -4,11 +4,10 @@ const router = express.Router();
 
 
 // Load User model
-const Drink = require("../../models/Drink");
-const Order = require("../../models/Order");
+const db = require("../models");
 
 router.get("/bartender/orders", function(req, res) {
-  Order.find({})
+  db.Order.find({})
     .then(allOrders => {
       res.json({
         message: "Requested all Orders",
@@ -26,7 +25,7 @@ router.get("/bartender/orders", function(req, res) {
 });
 
 router.get("/order-summary", function(req, res) {
-  Drink.find({})
+  db.Drink.find({})
     .then(allDrinks => {
       console.log(allDrinks);
       res.json({
@@ -45,7 +44,7 @@ router.get("/order-summary", function(req, res) {
 });
 
 router.post("/order-summary", function(req, res) {
-  Order.create(req.body)
+  db.Order.create(req.body)
     .then(newOrder => {
       console.log("New Order: ", newOrder);
       res.json({
@@ -63,7 +62,7 @@ router.post("/order-summary", function(req, res) {
     });
 });
 router.delete("/order-summary/drink/:id", function(req, res) {
-  Drink.deleteOne({ _id: req.params.id })
+  db.Drink.deleteOne({ _id: req.params.id })
     .then(response => {
       // console.log(response);
       res.json({
@@ -83,7 +82,7 @@ router.delete("/order-summary/drink/:id", function(req, res) {
 router.post("/new", function(req, res) {
   console.log("You hit the api new route");
   console.log(req.body);
-  Drink.create(req.body)
+  db.Drink.create(req.body)
     .then(newDrink => {
       console.log("New Drink: ", newDrink);
       res.json({

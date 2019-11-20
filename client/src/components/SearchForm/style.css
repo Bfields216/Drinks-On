@@ -1,9 +1,23 @@
 form.search {
-  overflow: auto;
+  width: 200px;
   margin-bottom: 10px;
 }
 
 form.search button[type="submit"] {
   float: right;
   margin-top: 10px;
+}
+
+
+.input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  
+  width: 50%;
+}
+
+.btn:hover {
+  background-color: #ffffff;
+  color: rgb(74, 6, 6) ;
 }

@@ -1,16 +1,17 @@
 {
   "name": "drinkson",
   "version": "1.0.0",
-  "description": "",
+  "description": "drinks",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
     "start": "node server.js",
+    "build": "react-scripts build",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"nodemon server.js\" \"cd client && npm run start\"",
     "seed": "node scripts/seedsDB.js",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "author": "",
   "license": "MIT",
@@ -28,6 +29,7 @@
     "google-maps-react": "^2.0.2",
     "heroku": "^7.35.0",
     "jsonwebtoken": "^8.5.1",
+    "mdbootstrap": "^4.9.0",
     "mongoose": "^5.3.11",
     "path": "^0.12.7",
     "react-geolocated": "^3.0.1",

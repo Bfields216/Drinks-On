@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+
 
 // Using the datalist element we can create autofill suggestions based on the props.breeds array
 function OrderBtn(props) {
@@ -8,7 +8,7 @@ function OrderBtn(props) {
       <a href="/summary">
         <button
           type="button"
-          className="btn btn-primary btn-lg btn-block"
+          className="general-btn btn-lg btn-block"
           onClick={props.createOrder}
         >
           View Order Summery
@@ -20,11 +20,3 @@ function OrderBtn(props) {
 
 export default OrderBtn;
 
-
-// <li>
-// <div className="name">
-//   <p>Signed in as {name}</p>
-// </div>
-// </li>
-
-// <li onClick={this.onLogoutClick}>Sign Out</li>
