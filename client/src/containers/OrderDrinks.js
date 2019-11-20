@@ -108,11 +108,7 @@ class OrderDrinks extends Component {
   render() {
     return (
       <>
-<<<<<<< HEAD
-      
-=======
    
->>>>>>> mia
         
         <Jumbotron className="list-container">
         <Container fluid className="search fixed">
