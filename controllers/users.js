@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 
 // User Model
-const User = require('../../models/User');
+const db = require("../models");
 
 // @route   POST api/users
 // @desc    Register new user
@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
   }
 
   // Check for existing user
-  User.findOne({ email })
+  db.User.findOne({ email })
     .then(user => {
       if(user) return res.status(400).json({ msg: 'User already exists' });
 

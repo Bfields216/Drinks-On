@@ -1,7 +1,7 @@
 {
   "name": "drinkson",
   "version": "1.0.0",
-  "description": "",
+  "description": "drinks",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
