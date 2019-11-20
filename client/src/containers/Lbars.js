@@ -1,8 +1,4 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
-
-=======
->>>>>>> mia
 import NavbarWdivs from "../components/NavbarWdivs";
 import Axios from "axios";
 import GoogleMapReact from "google-map-react";
@@ -94,12 +90,8 @@ class Bars extends Component {
   render() {
     return (
       <>
-<<<<<<< HEAD
-      
-=======
      <div classname="card mb-3">
 <div classname="card-img-top" id="map">
->>>>>>> mia
     
           <GoogleMapReact
             bootstrapURLKeys={{
