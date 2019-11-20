@@ -6,7 +6,7 @@ import MapFlag from "../components/MapFlag/MapFlag";
 import CheckinBtn from "../components/CheckinBtn";
 import CheckoutBtnLB from "../components/CheckOutBtnLB";
 import API from "../utils/API";
-import {  Jumbotron, Container, ListGroup, ListGroupItem } from 'reactstrap';
+import {  ListGroup, ListGroupItem } from 'reactstrap';
 
 
 

@@ -54,9 +54,9 @@ class OrderSummary extends Component {
     event.preventDefault();
     const id = event.target.id;
     const drinkToBeRemoved = this.state.drinks[id]._id;
-    let shouldDelete = window.confirm(
-      "Are you sure you want to delete this drink?"
-    );
+    // let shouldDelete = window.confirm(
+    //   "Are you sure you want to delete this drink?"
+    // );
     // if (shouldDelete === true) {
       axios
         .delete(`/api/drinks/order-summary/drink/${drinkToBeRemoved}`)
@@ -151,9 +151,7 @@ class OrderSummary extends Component {
       <>
       <Jumbotron className="list-container">
       <h1>Edit Drinks</h1>
-      
-
-      
+    
 
         <Container className="drink-list">
         {this.state.drinks.map((drink, index) => (
@@ -199,6 +197,7 @@ class OrderSummary extends Component {
                          
                
               ))}
+             
               <span className="col-sm-2">
               <button
               className="general-btn"
@@ -208,6 +207,7 @@ class OrderSummary extends Component {
               Remove
               </button>
               </span>
+              
             </div>
             </div>
             ))}
