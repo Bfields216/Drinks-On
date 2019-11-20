@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-
+​
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
 var ingredientSchema = new Schema({
@@ -43,6 +43,11 @@ var OrderSchema = new Schema({
     required: true
   },
   order: [drinkSchema],
+  quantity: {
+    type: Number,
+    required: true,
+    default: 0
+  },
   accepted: {
     type: Boolean,
     required: true,
@@ -54,9 +59,9 @@ var OrderSchema = new Schema({
     default: false
   }
 });
-
+​
 // This creates our model from the above schema, using mongoose's model method
 const Order = mongoose.model("Order", OrderSchema);
-
+​
 // Export the Article model
 module.exports = Order;

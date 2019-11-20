@@ -3,12 +3,10 @@ import axios from "axios";
 import SearchForm from "../components/SearchForm";
 import OrderBtn from "../components/OrderBtn";
 import NavbarWdivs from "../components/NavbarWdivs";
-
-import { Jumbotron } from 'reactstrap';
+import Quantity from "../components/Quantity";
+import { Jumbotron } from "reactstrap";
 import { Container } from "react-bootstrap";
-const cors = require('cors');
-
-
+const cors = require("cors");
 class OrderDrinks extends Component {
   state = {
     drinks: [],
@@ -19,9 +17,11 @@ class OrderDrinks extends Component {
   componentDidMount() {
     // this.getDrinks();
   }
-  addDrink = event => {
-    event.preventDefault();
-    const id = event.target.id;
+  addDrink = (id, name) => {
+    // event.preventDefault();
+    // const id = event.target.id;
+    let updateQuantity = this.state.currentOrder;
+    let trigger = false;
     const newDrink = {
       drinkId: this.state.drinks[id].idDrink,
       drinkThumb: this.state.drinks[id].strDrinkThumb,
@@ -49,21 +49,32 @@ class OrderDrinks extends Component {
         }
       ],
       glass: this.state.drinks[id].strGlass,
-      instructions: this.state.drinks[id].strInstructions
+      instructions: this.state.drinks[id].strInstructions,
+      quantity: 1
     };
     console.log(newDrink);
-    let currentOrder = this.state.currentOrder;
-    currentOrder.push(newDrink);
-    this.setState({
-      currentOrder
+    this.state.currentOrder.map((order, index) => {
+      if (order.drinkId === newDrink.drinkId) {
+        console.log(order.quantity);
+        order.quantity++;
+        trigger = true;
+        return trigger;
+      } else {
+        trigger = false;
+      }
     });
-    console.log(this.state.currentOrder)
-    // let currentAmt = 0;
-    // this.state.currentOrder.map((order,index) => {
-    //   if(order.drinkId === currentOrder[id].drinkId) {
-    //    currentAmt++
-    //   }
-    // })
+    if (!trigger) {
+      let currentOrder = this.state.currentOrder;
+      console.log("NEW!");
+      currentOrder.push(newDrink);
+      this.setState({
+        currentOrder
+      });
+      console.log(this.state.currentOrder);
+    } else {
+      console.log(updateQuantity, "updateQuantity");
+      this.setState({ currentOrder: updateQuantity });
+    }
   };
 
   createOrder = event => {
@@ -78,12 +89,21 @@ class OrderDrinks extends Component {
         alert("Failed to create: " + err.message);
       });
   };
-  
-  displayAmount = event => {
-    const id = event.target.id
-    let amount = this.state.currentOrder.filter(current => current === id)
-    return amount.length
-  }
+
+  displayAmount = id => {
+    // const id = event.target.id;
+    console.log(id);
+    let amount = this.state.currentOrder.find(
+      current => current.drinkId === id
+    );
+    if (!amount) {
+      console.log(0);
+      return 0;
+    } else {
+      console.log(amount.quantity);
+      return amount.quantity;
+    }
+  };
 
   handleInputChange = event => {
     this.setState({ searchQuery: event.target.value });
@@ -94,7 +114,8 @@ class OrderDrinks extends Component {
     axios
       .get(
         "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" +
-          this.state.searchQuery, cors()
+          this.state.searchQuery,
+        cors()
       )
       .then(drinks => {
         console.log(drinks);
@@ -108,60 +129,49 @@ class OrderDrinks extends Component {
   render() {
     return (
       <>
-   
-        
         <Jumbotron className="list-container">
-        <Container fluid className="search fixed">
-        <SearchForm
-          handleFormSubmit={this.handleFormSubmit}
-          handleInputChange={this.handleInputChange}
-          />
-          <OrderBtn createOrder={this.createOrder} />
-        </Container>
-        <Container className="drink-list">
-        {this.state.drinks.map((drink, index) => (
-          <div className="row border" key={drink.idDrink}>
-            <div className="col-md-3 border">
-              <img
-                className="w-100"
-                src={drink.strDrinkThumb}
-                alt={drink.strDrink}
-              />
-            </div>
-            <div className="col-md-8">
-              <h3>{drink.strDrink}</h3>
-              <p>
-                <h5>
-                  {" "}
-                  {drink.strIngredient1}, {drink.strIngredient2},{" "}
-                  {drink.strIngredient3}, {drink.strIngredient4}{" "}
-                </h5>
-             
-              <button 
-              className="general-btn"
-                id={index}
-                onClick={this.addDrink}
-              >
-                Add to Order
-              </button>
-           
-            </p>
-            </div>
-            <div
-              className="col-md-1"
-              id={drink.drinkId}
-              displayAmount={this.displayAmount}
-            >
-              {/* {drink.amount})} */}
-              </div>
-              </div>
-          ))}
+          <Container className="search">
+            <SearchForm
+              handleFormSubmit={this.handleFormSubmit}
+              handleInputChange={this.handleInputChange}
+            />
+            <OrderBtn createOrder={this.createOrder} />
           </Container>
-          </Jumbotron>
-          <NavbarWdivs />
-       </>
-      );
-    }
+          <Container className="drink-list">
+            {this.state.drinks.map((drink, index) => (
+              <div className="row border" key={drink.idDrink}>
+                <div id="each-row" className="col-md-2 border">
+                  <img
+                    className="w-100"
+                    src={drink.strDrinkThumb}
+                    alt={drink.strDrink}
+                  />
+                </div>
+                <div id="drink-content" className="col-md-6">
+                  <h3>{drink.strDrink}</h3>
+                  <p>
+                    
+                      {" "}
+                      {drink.strIngredient1}, {drink.strIngredient2},{" "}
+                      {drink.strIngredient3}, {drink.strIngredient4}{" "}
+                    
+                  </p>
+                </div>
+                <Quantity
+                  id={index}
+                  name={drink.idDrink}
+                  addDrink={this.addDrink}
+                  drinkId={drink.idDrink}
+                  displayAmount={this.displayAmount}
+                />
+              </div>
+            ))}
+          </Container>
+        </Jumbotron>
+        <NavbarWdivs />
+      </>
+    );
   }
-  
-  export default OrderDrinks;
+}
+
+export default OrderDrinks;

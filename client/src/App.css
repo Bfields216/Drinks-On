@@ -69,9 +69,9 @@ form.search {
   /* padding: 0; 
   margin: 2rem; */
    background-color: rgb(255, 255, 255);
-  border-radius: .3rem;
+  /* border-radius: .3rem; */
   position: center;
-  margin: 10px;
+  /* margin: 10px; */
 }
 
 .drink-list {
@@ -150,7 +150,7 @@ form.search {
 	background-color:#4b0202ee;
 	border-radius:42px;
   display:inline-block;
- 
+  margin-top:10px;
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
@@ -164,7 +164,9 @@ form.search {
 }
 .general-btn:active {
 	position:relative;
-	top:10px;
+  background-color:#f5f5f5ee;
+  color: #300c08;
+  
 }
 
 a {
@@ -190,8 +192,33 @@ a {
 
 /* *****************SEARCH/ORDER DRINKS PAGE STYLING*********************************** */
 
+#quantity {
+  color:rgb(51, 4, 4);
+  font-size: 20px;
+  font-weight: bold;
+}
 
+#eact-row {
+position: relative;
+width: 100%;
+padding-top:0px;
+padding-left: 0px;
+}
 
+#drink-content {
+  margin-top: 10px;
+}
+
+.col-md-6 {
+    flex: 0 0 50%;
+    max-width: 18%;
+}
+
+.btn-outline-mdb-color {
+  border: 2px solid rgb(51, 4, 4);;
+  background-color: white;
+  color: rgb(51, 4, 4);;
+}
 
 
 
