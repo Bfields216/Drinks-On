@@ -31,6 +31,8 @@ class AppNavbar extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    console.log(isAuthenticated);
+    console.log(this.props);
 
     const authLinks = (
       <Fragment>

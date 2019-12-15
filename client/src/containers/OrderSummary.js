@@ -4,6 +4,9 @@ import axios from "axios";
 import CheckOutBtn from "../components/CheckOutBtn";
 import NavbarWdivs from "../components/NavbarWdivs";
 import { Container, Jumbotron} from "react-bootstrap";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 // import TopNav from "../components/TopNavbar";
 
 
@@ -23,6 +26,10 @@ class OrderSummary extends Component {
   state = {
     drinks: [],
     currentOrder: []
+  };
+
+  static propTypes = {
+    auth: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -112,10 +119,11 @@ class OrderSummary extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     console.log(this.state.drinks);
-    event.preventDefault();
+    const username = this.props.auth.user.name;
+
     // const id = event.target.id;
     const newOrder = {
-      name: "Jimmy",
+      name: username,
       order: this.state.drinks
     };
     console.log(newOrder);
@@ -147,6 +155,9 @@ class OrderSummary extends Component {
     };
 
   render() {
+    const user  = this.props.auth;
+    console.log(this.props.auth)
+
     return (
       <>
       <Jumbotron className="list-container">
@@ -219,4 +230,10 @@ class OrderSummary extends Component {
     );
   }
 }
-export default OrderSummary;
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+export default connect(
+  mapStateToProps, 
+  null
+  )(OrderSummary);
