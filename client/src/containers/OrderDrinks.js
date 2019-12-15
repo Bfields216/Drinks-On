@@ -78,11 +78,13 @@ class OrderDrinks extends Component {
   };
 
   createOrder = event => {
+    event.preventDefault();
     console.log(this.state.currentOrder);
     axios
-      .post("/api/drinks/new", this.state.currentOrder)
+      .post("api/drinks/new", this.state.currentOrder)
       .then(response => {
         console.log(response);
+        this.props.history.push('/summary');
       })
       .catch(err => {
         console.log(err);
