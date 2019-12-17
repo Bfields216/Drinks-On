@@ -61,10 +61,6 @@ class OrderSummary extends Component {
     event.preventDefault();
     const id = event.target.id;
     const drinkToBeRemoved = this.state.drinks[id]._id;
-    let shouldDelete = window.confirm(
-      "Are you sure you want to delete this drink?"
-    );
-    // if (shouldDelete === true) {
       axios
         .delete(`/api/drinks/order-summary/drink/${drinkToBeRemoved}`)
         .then(response => {
@@ -119,53 +115,47 @@ class OrderSummary extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     console.log(this.state.drinks);
-    const username = this.props.auth.user.name;
-
-    // const id = event.target.id;
-    const newOrder = {
-      name: username,
-      order: this.state.drinks
-    };
-    console.log(newOrder);
-
-    axios
-      .post("/api/drinks/order-summary", newOrder)
-      .then(response => {
-        console.log(response.data.data._id);
-        userId = response.data.data._id;
-      })
-      .catch(err => {
-        console.log(err);
-        alert("Failed to create: " + err.message);
-      });
-
-    this.state.drinks.map((drink, i) => {
+    
+    if (this.props.auth.isAuthenticated) {
+      const username = this.props.auth.user.name;
+      const newOrder = {
+        name: username,
+        order: this.state.drinks
+      };
+      console.log(newOrder);
       axios
-        .delete(`/api/drinks/order-summary/drink/${drink._id}`)
+        .post("/api/drinks/order-summary", newOrder)
         .then(response => {
-          console.log(response);
-          this.props.history.push("/summary");
+          console.log(response.data.data._id);
+          userId = response.data.data._id;
         })
         .catch(err => {
           console.log(err);
           alert("Failed to create: " + err.message);
         });
-    });
-    this.setState({ drinks: [] });
-    };
+      this.state.drinks.map((drink, i) => {
+        axios
+          .delete(`/api/drinks/order-summary/drink/${drink._id}`)
+          .then(response => {
+            console.log(response);
+            this.props.history.push("/summary");
+          })
+          .catch(err => {
+            console.log(err);
+            alert("Failed to create: " + err.message);
+          });
+      });
+      this.setState({ drinks: [] });
+    } else {
+      this.props.history.push("/");
+    }; 
+  }
 
   render() {
-    const user  = this.props.auth;
-    console.log(this.props.auth)
-
     return (
       <>
       <Jumbotron className="list-container">
       <h1>Edit Drinks</h1>
-      
-
-      
-
         <Container className="drink-list">
         {this.state.drinks.map((drink, index) => (
           <div className="row border" key={drink.idDrink}>
@@ -182,7 +172,6 @@ class OrderSummary extends Component {
                 <>
                 <p>
                   {ingredient.name}
-                  
                   </p>
                   <div>
                   <FontAwesomeIcon
@@ -195,7 +184,6 @@ class OrderSummary extends Component {
                   onClick={() => this.changeMeasure((index),(i),"+")}
                   />
                   <span> {ingredient.measure} </span> 
-                      
                           <FontAwesomeIcon
                             icon={faMinusCircle}
                             size="2x"
@@ -207,8 +195,6 @@ class OrderSummary extends Component {
                           />
                           </div>
                 </>
-                         
-               
               ))}
               <span className="col-sm-2">
               <button

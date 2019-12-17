@@ -6,6 +6,8 @@ import MapFlag from "../components/MapFlag/MapFlag";
 import CheckinBtn from "../components/CheckinBtn";
 import CheckoutBtnLB from "../components/CheckOutBtnLB";
 import API from "../utils/API";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {  ListGroup, ListGroupItem } from 'reactstrap';
 
 
@@ -18,6 +20,7 @@ class Bars extends Component {
   state = {
     bars: [],
     currentBars: [],
+    users: [],
     // disabled: false,
   };
   static defaultProps = {
@@ -28,6 +31,10 @@ class Bars extends Component {
     zoom: 13,
     // center: "uluru"
   };
+  static propTypes = {
+    auth: PropTypes.object.isRequired
+  };
+
   componentDidMount() {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const mapsurl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=bars+in+Atlanta&key=AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA`;
@@ -65,33 +72,70 @@ class Bars extends Component {
   };
 
   checkin = event => {
-    event.preventDefault();
-    const index = event.target.id;
-    let currentBars = this.state.currentBars;
-    const foundBar = this.state.bars[index];
-    currentBars.push(foundBar);
-    this.setState({
-      currentBars
-    });   
-  }
+    if (this.props.auth.isAuthenticated) {
+      const username = this.props.auth.user.name;
+      event.preventDefault();
+      const index = event.target.id;
+      let currentBars = this.state.currentBars;
+      const foundBar = this.state.bars[index];
+      currentBars.push(foundBar);
+      this.setState({
+        currentBars
+      });
+      console.log(currentBars[0].name)
+      Axios
+        .put('/api/users/checkinBar', {
+          userId: username,
+          barName: currentBars[0].name
+        })
+        .then(res =>
+          console.log(res)
+        )
+        .catch(err => {
+          console.log(err);
+        });
+      Axios
+        .get(`/api/users/${currentBars[0].name}`)
+        .then(res => {
+          console.log(res);
+          this.setState({
+          users: res.data.data
+          });
+          console.log(this.state.users)
+        })
+        .catch(err => {
+          console.log(err);
+        });  
+    } else {
+      this.props.history.push("/");
+    }
+  };
 
   checkout = event => {
     event.preventDefault();
-    
-    
-    this.setState({currentBars: []});
-    
-   
-    
-  }
-
+    const username = this.props.auth.user.name;
+    this.setState({currentBars: []})
+    Axios
+        .put('/api/users/checkinBar', {
+          userId: username,
+          barName: "null"
+        })
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  };
+  
+ 
 
 
   render() {
     return (
       <>
-     <div classname="card mb-3">
-<div classname="card-img-top" id="map">
+     <div className="card mb-3">
+<div className="card-img-top" id="map">
     
           <GoogleMapReact
             bootstrapURLKeys={{
@@ -116,8 +160,8 @@ class Bars extends Component {
               <div className="col-sm-6">
                 <div className="card">
                   <div className="card-body">
-                    <h5 class="card-title">Bars Near You</h5>
-                    <ListGroup className="list" fluid>
+                    <h5 className="card-title">Bars Near You</h5>
+                    <ListGroup className="list">
                     <ListGroupItem>
                       {this.state.bars.map((bar, index) => (
                         <div className="row border" key={bar.id}>
@@ -136,14 +180,22 @@ class Bars extends Component {
               <div className="col-sm-6">
                 <div className="card">
                   <div className="card-body">
-                    <h5 class="card-title">Current Location</h5>
-                    <ListGroup className="list" fluid>
+                    <h5 className="card-title">Current Location</h5>
+                    <ListGroup className="list" >
                     <ListGroupItem>
                     {this.state.currentBars.map((bar, index) => (
                       <div className="row border" key={bar.id}>
                         <div className="col-md-8">
                           <div className="bar-name">{bar.name}</div>
                           <p>{bar.formatted_address}</p>
+                          <h6>There are currently {this.state.users.length} drinkers at this location.</h6>
+                          {this.state.users.map((user, index) => (
+                        <div className="row border" key={index}>
+                          <div className="col-md-8">
+                            <h6>{user.name}</h6>
+                          </div>
+                        </div>
+                      ))}
                         </div>
                         <CheckoutBtnLB checkout={this.checkout}/>
                         </div>
@@ -161,7 +213,12 @@ class Bars extends Component {
     );
   }
 }
-
-export default Bars;
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+export default connect(
+  mapStateToProps, 
+  null
+  )(Bars);
 
 

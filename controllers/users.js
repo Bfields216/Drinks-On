@@ -58,5 +58,44 @@ router.post('/', (req, res) => {
       })
     })
 });
+router.put('/checkinBar', (req, res) => {
+  const { userId, barName } = req.body;
+  console.log(req.body)
+  
+  db.User.updateOne({ name: userId },{ checkedIn: barName })
+    .then(checkedIn => {
+      res.json({
+        message: "User successfully checked in to Bar",
+        error: false,
+        data: checkedIn
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.json({
+        message: err.message,
+        error: true
+      });
+    });
 
+});
+router.get('/:id', (req, res) => {
+  db.User.find({ checkedIn: req.params.id })
+  .select('name')
+  .then(response => {
+    console.log(response);
+    res.json({
+      message: `Found all users at ${req.params.id}`,
+      error: false,
+      data: response
+    });
+  })
+  .catch(err => {
+    console.log(err);
+    res.json({
+      message: err.message,
+      error: true
+    });
+  });
+})
 module.exports = router;
