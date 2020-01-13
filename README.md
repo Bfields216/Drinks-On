@@ -1,2 +1,2 @@
 # Drinks-On
-ttps://drinkson.herokuapp.com
+[Click to visit site](https://drinkson.herokuapp.com/)
