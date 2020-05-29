@@ -18,18 +18,18 @@ const DrinkInstructions = (props) => {
   const toggle = () => setModal(!modal);
 
   return (
-    <div>
-      <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
+    <>
+      <div className="btn-small red" onClick={toggle}>{buttonLabel}</div>
       <Modal isOpen={modal} toggle={toggle} className={className} backdrop={backdrop}>
         <ModalHeader toggle={toggle}>How to make {drinkname}</ModalHeader>
         <ModalBody>
           {instructions}
         </ModalBody>
         <ModalFooter>
-          <Button color="secondary" onClick={toggle}>Exit</Button>
+          <div className="btn grey" onClick={toggle}>Exit</div>
         </ModalFooter>
       </Modal>
-    </div>
+    </>
   );
 }
 
