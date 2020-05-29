@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Landing from "../components/Carousel";
+import Carousel from "../components/Carousel";
 
 
 class Home extends Component {
   render() {
     return (
 
-  <Landing />
+  <Carousel />
 
     );
   }

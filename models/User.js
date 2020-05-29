@@ -20,6 +20,11 @@ const UserSchema = new Schema({
   register_date: {
     type: Date,
     default: Date.now
+  },
+  checkedIn: {
+    type: String,
+    required: true,
+    default: "null"
   }
 });
 

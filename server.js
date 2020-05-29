@@ -3,9 +3,10 @@ const mongoose = require("mongoose");
 const app = express();
 // const config = require('config');
 const path = require('path');
-const DrinksController = require("./controllers/drinks");
-const UsersController = require("./controllers/users");
-const AuthController = require("./controllers/auth");
+const DrinksController = require("./controllers/drinksController");
+const UsersController = require("./controllers/usersController");
+const AuthController = require("./controllers/authController");
+const BarController = require("./controllers/barController");
 
 const db = require("./models");
 
@@ -34,7 +35,7 @@ connection.on("error", err => {
   app.use('/api/drinks', DrinksController);
   app.use('/api/users', UsersController);
   app.use('/api/auth', AuthController);
-  
+  app.use('/bars', BarController);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {

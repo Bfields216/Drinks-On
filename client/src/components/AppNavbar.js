@@ -31,6 +31,8 @@ class AppNavbar extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    console.log(isAuthenticated);
+    console.log(this.props);
 
     const authLinks = (
       <Fragment>
@@ -57,7 +59,6 @@ class AppNavbar extends Component {
     );
 
     return (
-      <div>
         <Navbar id="topnav"  dark expand='md' className="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
           <Container>
             <NavbarBrand href='/'>Drink On Us</NavbarBrand>
@@ -69,7 +70,6 @@ class AppNavbar extends Component {
             </Collapse>
           </Container>
         </Navbar>
-      </div>
     );
   }
 }
