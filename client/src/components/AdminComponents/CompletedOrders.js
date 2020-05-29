@@ -9,7 +9,6 @@ import {
 } from "react-materialize";
 import { storeItem } from "../../actions/adminActions";
 import axios from "axios";
-import BarCompleteOrderBtn from "../BarCompleteOrderBtn";
 import DrinkInstructions from "../DrinkInstructions";
 
 class CompletedOrders extends Component {
