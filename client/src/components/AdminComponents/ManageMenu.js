@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { CollapsibleItem, Icon } from "react-materialize";
+import { CollapsibleItem, Icon, TextInput } from "react-materialize";
 import { storeItem } from "../../actions/adminActions";
 import axios from "axios";
 
@@ -89,22 +89,25 @@ class ManageMenu extends Component {
         {this.state.toggle ? (
           <>
             <div className="row create-event">
-              <div class="input-field col s12">
-                <input id="itemName" onChange={this.handleInputChange} />
-                <label for="itemName">Item Name</label>
-              </div>
+              <TextInput
+                id="itemName"
+                label="Item Name"
+                onChange={this.handleInputChange}
+              />
             </div>
             <div className="row  create-event">
-              <div class="input-field col s12">
-                <input id="itemPrice" onChange={this.handleInputChange} />
-                <label for="itemPrice">Price</label>
-              </div>
+              <TextInput
+                id="itemPrice"
+                label="Price"
+                onChange={this.handleInputChange}
+              />
             </div>
             <div className="row  create-event">
-              <div class="input-field col s12">
-                <input id="itemDescription" onChange={this.handleInputChange} />
-                <label for="itemDescription">Description</label>
-              </div>
+              <TextInput
+                id="itemDescription"
+                label="Description"
+                onChange={this.handleInputChange}
+              />
             </div>
 
             <button onClick={this.addNewItem} className="btn" type="button">

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { CollapsibleItem, Icon, DatePicker } from "react-materialize";
+import moment from 'moment'
+import { CollapsibleItem, Icon, DatePicker, TextInput } from "react-materialize";
 import { storeEvent } from "../../actions/adminActions";
 import axios from "axios";
 
@@ -62,6 +63,12 @@ class ManageEvents extends Component {
       [id]: value,
     });
   };
+  handleDateInput = (newDate) => {
+    console.log(newDate)
+    this.setState({
+      eventDate: moment(newDate).format("MMM Do YYYY")
+    });
+  };
 
   render() {
     return (
@@ -92,33 +99,19 @@ class ManageEvents extends Component {
         {this.state.toggle ? (
           <>
             <div className="row create-event">
-              <div class="input-field col s12">
-                <input id="eventName" onChange={this.handleInputChange} />
-                <label for="eventName">Event Name</label>
-              </div>
+              <TextInput id="eventName" label="Event Name" onChange={this.handleInputChange} />
             </div>
             <div className="row create-event">
-              <div class="input-field col s12">
-                <DatePicker />
-              </div>
+                <DatePicker value={this.state.eventDate} id="eventDate" onChange={(newDate) => this.handleDateInput(newDate)}/>
             </div>
             <div className="row  create-event">
-              <div class="input-field col s12">
-                <input id="eventHost" onChange={this.handleInputChange} />
-                <label for="eventHost">Host</label>
-              </div>
+            <TextInput id="eventHost" label="Host" onChange={this.handleInputChange}/>
             </div>
             <div className="row  create-event">
-              <div class="input-field col s12">
-                <input id="eventPrice" onChange={this.handleInputChange} />
-                <label for="eventPrice">Host</label>
-              </div>
+            <TextInput id="eventPrice" label="Cost" onChange={this.handleInputChange}/>
             </div>
             <div className="row  create-event">
-              <div class="input-field col s12">
-                <input id="eventLink" onChange={this.handleInputChange} />
-                <label for="eventLink">Link/Social Media</label>
-              </div>
+            <TextInput id="eventLink" label="Link" onChange={this.handleInputChange}/>
             </div>
             <button onClick={this.createNewEvent} className="btn" type="button">
               Create

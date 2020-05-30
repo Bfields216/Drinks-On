@@ -30,10 +30,10 @@ function NavbarWdivs(props) {
           to="/"
           className="col-sm-3 border text-center h3 p-3 m-0 "
         >
-          Home
+          <div>Home</div>
           <FontAwesomeIcon
             icon={faHome}
-            size="3x"
+            size="2x"
             // style={{ '--fa-primary-color': 'red' }}
           />
         </Link>
@@ -42,10 +42,10 @@ function NavbarWdivs(props) {
           to="/bars"
           className="col-sm-3 border text-center h3 p-3 m-0"
         >
-          Bars
+          <div>Bars</div>
           <FontAwesomeIcon
             icon={faMapMarkerAlt}
-            size="3x"
+            size="2x"
             // style={{ '--fa-primary-color': 'red' }}
           />
         </Link>
@@ -54,10 +54,10 @@ function NavbarWdivs(props) {
           to="/OrderDrinks"
           className="col-sm-3 border text-center h3 p-3 m-0"
         >
-          Drinks
+          <div>Drinks</div>
           <FontAwesomeIcon
             icon={faCocktail}
-            size="3x"
+            size="2x"
 
             // style={{ '--fa-primary-color': 'red' }}
           />
@@ -67,9 +67,10 @@ function NavbarWdivs(props) {
           to="/admin"
           className="col-sm-3 border text-center h3 p-3 m-0"
         >
+          <div>Admin</div>
           <FontAwesomeIcon
             icon={faBars}
-            size="3x"
+            size="2x"
 
             // style={{ '--fa-primary-color': 'red' }}
           />

@@ -2,8 +2,9 @@
   padding: 0;
   margin: 0;
 }
-#topnav {
-  background-color: rgb(72, 1, 1);
+.nav-wrapper {
+  background-color: rgb(72, 1, 1) !important;
+  padding: 0 1.5rem !important;
 }
 
 .navbar.navbar-dark .navbar-nav .nav-item .nav-link {
@@ -16,6 +17,16 @@
 .navbar .nav-item {
   padding-right: 6px;
   padding-left: 6px;
+}
+.nav-button{
+  font-size: 20px !important;
+}
+.nav-button:hover, .brand-logo:hover{
+  color: inherit !important;
+  text-decoration: none !important;
+}
+.brand-logo{
+  font-size: 2.8rem !important;
 }
 #bottom-nav > .col-sm-3 {
   flex: 0 0 25%;
@@ -170,7 +181,7 @@ a {
 
 /* *****************LBARS/MAP PAGE STYLING*********************************** */
 .search-bars-input {
-  margin: 56px 0px 0px 0px !important;
+  margin: 20px 0px !important;
   justify-content: center;
 }
 .search-bars-input input {
@@ -336,11 +347,20 @@ padding: 0px !important;
 .send-message-header {
   text-align: center;
 }
+.drinkers-text, .omw-text {
+  font-weight: bolder !important;
+  font-style: italic;
+}
+.side-nav-collection {
+  padding-left: unset !important;
+  padding-right: unset !important;
+}
 /* Mobile phones (portrait and landscape) ---------- */
 @media screen and (max-width: 767px){
   #header-img {
-      width: 75% !important;
-      height: 40% !important;
+      margin-top: 10% !important;
+      width: 40% !important;
+      height: 15vh !important;
   }
   .bar-view-header-row { 
     height: unset !important;

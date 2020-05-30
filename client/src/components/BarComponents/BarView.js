@@ -64,14 +64,14 @@ class BarView extends Component {
   render() {
     return (
       <>
-        <div className="card mb-3 search-bars-input">
+        <div className="card mb-3">
           <div className="row bar-view-header-row">
-            <div className="col-8">
-              <h1>The Leaky Faucet</h1>
-              <div className="row red-text h5">
+            <div className="col-11">
+              <h1 className="black-text">The Leaky Faucet</h1>
+              <div className="row drinkers-text red-text h5">
                 Total Drinkers: {this.props.admin.users.length}
               </div>
-              <div className="row orange-text h5">
+              <div className="row omw-text orange-text h5">
                 OMW!: {this.props.admin.omw.length}
               </div>
               <div className="row btm-0">
@@ -80,17 +80,6 @@ class BarView extends Component {
               <div className="row">
                 <PartyOptions buttonLabel="Party Options" />
               </div>
-            </div>
-            <div className="col-3 text-center bar-view-header-img">
-              <img
-                alt=""
-                className="circle"
-                id="header-img"
-                src="https://i.kym-cdn.com/entries/icons/facebook/000/030/938/meme14.jpg"
-              />
-              <h3>J.T. Moola</h3>
-              <div className="btn-small bar-view-header-btn">My Account</div>
-              <div className="btn-small bar-view-header-btn">Messages</div>
             </div>
           </div>
           <div className="row">

@@ -8,9 +8,9 @@ import {
   FormGroup,
   Label,
   Input,
-  NavLink,
   Alert
 } from 'reactstrap';
+import {NavItem} from "react-materialize"
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/authActions';
@@ -78,10 +78,10 @@ class LoginModal extends Component {
 
   render() {
     return (
-      <div>
-        <NavLink onClick={this.toggle} href='#'>
+      <li>
+        <NavItem onClick={this.toggle} href='#' className="nav-button">
           Login
-        </NavLink>
+        </NavItem>
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Login</ModalHeader>
@@ -117,7 +117,7 @@ class LoginModal extends Component {
             </Form>
           </ModalBody>
         </Modal>
-      </div>
+      </li>
     );
   }
 }

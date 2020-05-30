@@ -22,7 +22,7 @@ class Admin extends Component {
       <>
         <div className="card mb-3">
           <div className="row search-bars-input">
-            <div className="col-12">
+            <div className="col-12 ">
               <h2>The Leaky Faucet</h2>
               <p>123 Easy St. Atlanta, GA</p>
               <Collapsible accordion className="list">
