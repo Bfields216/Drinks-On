@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import CheckinBtn from "../CheckinBtn";
 import OnMyWayBtn from "../OnMyWayBtn";
 import PartyOptions from "./PartyOptions"
 import { CollapsibleItem, Icon } from "react-materialize";

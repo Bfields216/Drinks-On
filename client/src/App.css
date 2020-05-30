@@ -355,6 +355,10 @@ padding: 0px !important;
   padding-left: unset !important;
   padding-right: unset !important;
 }
+.chip {
+  width: fit-content;
+  white-space: nowrap;
+}
 /* Mobile phones (portrait and landscape) ---------- */
 @media screen and (max-width: 767px){
   #header-img {

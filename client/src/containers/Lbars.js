@@ -3,7 +3,6 @@ import NavbarWdivs from "../components/NavbarWdivs";
 import axios from "axios";
 import GoogleMapReact from "google-map-react";
 import MapFlag from "../components/MapFlag";
-import CheckinBtn from "../components/CheckinBtn";
 import CheckoutBtnLB from "../components/CheckOutBtnLB";
 import SendDrinkModal from "../components/SendDrink";
 import API from "../utils/API";
