@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import moment from 'moment'
 import { CollapsibleItem, Icon, DatePicker, TextInput } from "react-materialize";
 import { storeEvent } from "../../actions/adminActions";
-import axios from "axios";
 
 class ManageEvents extends Component {
   state = {

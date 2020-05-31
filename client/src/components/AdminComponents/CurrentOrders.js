@@ -9,7 +9,7 @@ import {
 } from "react-materialize";
 import { storeItem } from "../../actions/adminActions";
 import axios from "axios";
-import DrinkInstructions from "../DrinkInstructions";
+import DrinkInstructions from "../DrinkComponents/DrinkInstructions";
 
 class CurrentOrders extends Component {
   state = {

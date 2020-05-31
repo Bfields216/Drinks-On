@@ -1,5 +1,5 @@
-import axios from "axios";
-import { returnErrors } from "./errorActions";
+// import axios from "axios";
+// import { returnErrors } from "./errorActions";
 import { UPDATE_BARS } from "./types";
 
 //Get bars from search results
@@ -23,7 +23,7 @@ export const storeBars = (barsArray) => async (dispatch) => {
     currentBar.drinks = [];
     currentBar.events = [];
     currentBar.mapLocation = bar.geometry.location;
-    bars.push(currentBar);
+    return bars.push(currentBar);
   });
   console.log(bars);
   dispatch({

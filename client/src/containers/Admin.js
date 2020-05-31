@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import ManageEvents from "../components/AdminComponents/ManageEvents";
 import ManageMenu from "../components/AdminComponents/ManageMenu";
 import NavbarWdivs from "../components/NavbarWdivs";

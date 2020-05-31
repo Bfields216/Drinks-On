@@ -31,7 +31,19 @@ class BarView extends Component {
       console.log(this.state.orders);
     });
   };
-
+  createOrder = (drink) => {
+    console.log(drink);
+    axios
+      .post("api/drinks/new", drink)
+      .then(response => {
+        console.log(response);
+        this.props.history.push('/summary');
+      })
+      .catch(err => {
+        console.log(err);
+        alert("Failed to create: " + err.message);
+      });
+  };
   completeOrder = (event) => {
     event.preventDefault();
     console.log(this.state.orders);
@@ -94,7 +106,7 @@ class BarView extends Component {
                 </Link>
                 {this.props.admin.photos.length > 0 ? (
                   this.props.admin.photos.map((photo, i) => (
-                    <img src={photo.img} className="bar-view-photos" />
+                    <img key={i} alt={`userphoto${i}`} src={photo.img} className="bar-view-photos" />
                   ))
                 ) : (
                   <h5 className="col-md-9">No Photos..Yet!</h5>
@@ -102,25 +114,34 @@ class BarView extends Component {
               </div>
             </div>
             <div className="col-12">
-              <h4>Drinks</h4>
+              <h4>Featured Drinks:</h4>
               <div className="row horizontal-scroll">
                 <Link to="/orderDrinks" className="">
                   <div class="card-panel col btn-large waves-effect waves-light grey bar-view-btn">
                     <div>order</div>
                     <i className="material-icons">local_bar</i>{" "}
                   </div>
-                </Link>
-
+                </Link>               
                 {this.props.admin.drinks.length > 0 ? (
-                  this.props.admin.drinks.map((drink, i) => (
-                    <div class="card-panel col-sm-1">
-                      <h6 className="row btm-0">{drink.name}</h6>
-                      <div className="row btm-0">{drink.price}</div>
+                  <div className="row horizontal-scroll">
+                  {this.props.admin.drinks.map((drink, i) => (
+                    <div key={i} class="card-panel row">
+                      <img alt={drink.drinkName} src={drink.drinkThumb} className="col s1 panel-thumb" />
+                      <div className="col-10">
+                      <h6 className="row btm-0">{drink.drinkName}</h6>
+                      <div className="row btm-0">${drink.drinkPrice}</div>
                       <em className="row btm-0">{drink.description}</em>
-                      <div className="btn-small">Order</div>
+                      </div>
+                      <div
+                        className="btn-small"
+                        onClick={() => this.createOrder(drink)}
+                      >
+                        Order
+                      </div>
                     </div>
-                  ))
-                ) : (
+                  ))}
+                  </div>)
+                 : (
                   <h5 className="col-md-9">
                     No Featured Drinks, but your welcome to order from our Full
                     Service Bar

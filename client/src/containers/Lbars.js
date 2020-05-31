@@ -4,14 +4,12 @@ import axios from "axios";
 import GoogleMapReact from "google-map-react";
 import MapFlag from "../components/MapFlag";
 import CheckoutBtnLB from "../components/CheckOutBtnLB";
-import SendDrinkModal from "../components/SendDrink";
 import API from "../utils/API";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { ListGroup, ListGroupItem } from "reactstrap";
 //---new imports----
-import { Collapsible, CollapsibleItem, Icon } from "react-materialize";
-import OnMyWayBtn from "../components/OnMyWayBtn";
+import { Collapsible} from "react-materialize";
 import { storeBars } from "../actions/barsActions";
 import BarInfo from "../components/BarComponents/BarInfo"
 
@@ -46,12 +44,8 @@ class Bars extends Component {
   };
 
   async componentDidMount() {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const mapsurl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=bars+in+Atlanta&key=AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA`;
     const { coords } = await this.getUserPosition();
-    console.log(coords);
     const { latitude, longitude } = await coords;
-    console.log(latitude, longitude);
     this.setState({ center: { lat: latitude, lng: longitude } }, () =>
       this.searchBars()
     );
@@ -240,7 +234,7 @@ class Bars extends Component {
                   <Collapsible accordion className="list">
                     <BarInfo bar={this.props.admin} checkin={this.checkin} />
                     {this.props.bars.map((bar, index) => (
-                      <BarInfo bar={bar} checkin={this.checkin} />
+                      <BarInfo key={index} bar={bar} checkin={this.checkin} />
                     ))}
                   </Collapsible>
                 </div>
@@ -263,7 +257,7 @@ class Bars extends Component {
                                   <div className="row border" key={index}>
                                     <div className="col-md-8">
                                       <h6>{user.name}</h6>
-                                      <SendDrinkModal name={user.name} />
+                                      {/* <SendDrinkModal name={user.name} /> */}
                                     </div>
                                   </div>
                                 ))}

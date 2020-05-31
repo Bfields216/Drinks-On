@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, NavItem, Icon } from "react-materialize";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import RegisterModal from "./auth/RegisterModal";
-import LoginModal from "./auth/LoginModal";
-import Logout from "./auth/Logout";
+import RegisterModal from "./AuthComponents/RegisterModal";
+import LoginModal from "./AuthComponents/LoginModal";
+import Logout from "./AuthComponents/Logout";
 import SideNav from "./SideNav";
 
 class AppNavbar extends Component {

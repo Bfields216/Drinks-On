@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
-import { Collection, Icon, CollectionItem } from "react-materialize";
+import { Collection, CollectionItem } from "react-materialize";
 import { connect } from "react-redux";
 
 class SideNav extends Component {

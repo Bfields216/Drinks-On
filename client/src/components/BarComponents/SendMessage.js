@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { Collection, CollectionItem, Icon } from "react-materialize";
 
 // Using the datalist element we can create autofill suggestions based on the props.breeds array
 const DrinkInstructions = (props) => {
-  const { disabled, image, name } = props;
+  const { image, name } = props;
 
   const [modal, setModal] = useState(false);
   const [backdrop] = useState(true);
@@ -48,6 +48,7 @@ const DrinkInstructions = (props) => {
         <div className="row">
                 <input
                   name="msgValue"
+                  value={msg}
                   onChange={handleInputChange}
                   placeholder="Enter Message"
                 />

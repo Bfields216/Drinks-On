@@ -1,6 +1,6 @@
-import axios from "axios";
+// import axios from "axios";
 import faker from "faker";
-import { returnErrors } from "./errorActions";
+// import { returnErrors } from "./errorActions";
 import { ADD_EVENT, ADD_ITEM, CHECKIN_USERS, GENERATE_PHOTOS } from "./types";
 
 //add event to Store
