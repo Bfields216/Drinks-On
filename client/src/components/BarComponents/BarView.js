@@ -35,11 +35,11 @@ class BarView extends Component {
     console.log(drink);
     axios
       .post("api/drinks/new", drink)
-      .then(response => {
+      .then((response) => {
         console.log(response);
-        this.props.history.push('/summary');
+        this.props.history.push("/summary");
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         alert("Failed to create: " + err.message);
       });
@@ -104,15 +104,21 @@ class BarView extends Component {
                     <i className="material-icons">photo</i>
                   </div>
                 </Link>
-                {this.props.admin.photos.length > 0 ? (
-                  this.props.admin.photos.map((photo, i) => (
-                    <div key={i} class="card-panel photos row">
-                    <img alt={`userphoto${i}`} src={photo.img} className="bar-view-photos col" />
-                    </div>
-                  ))
-                ) : (
-                  <h5 className="col-md-9">No Photos..Yet!</h5>
-                )}
+                <div className="row horizontal-scroll">
+                  {this.props.admin.photos.length > 0 ? (
+                    this.props.admin.photos.map((photo, i) => (
+                      <div key={i} class="card-panel photos row">
+                        <img
+                          alt={`userphoto${i}`}
+                          src={photo.img}
+                          className="bar-view-photos col"
+                        />
+                      </div>
+                    ))
+                  ) : (
+                    <h5 className="col-md-9">No Photos..Yet!</h5>
+                  )}
+                </div>
               </div>
             </div>
             <div className="col-12">
@@ -123,27 +129,31 @@ class BarView extends Component {
                     <div>order</div>
                     <i className="material-icons">local_bar</i>{" "}
                   </div>
-                </Link>               
+                </Link>
                 {this.props.admin.drinks.length > 0 ? (
                   <div className="row horizontal-scroll">
-                  {this.props.admin.drinks.map((drink, i) => (
-                    <div key={i} class="card-panel row">
-                      <img alt={drink.drinkName} src={drink.drinkThumb} className="col s1 panel-thumb" />
-                      <div className="col-10">
-                      <h6 className="row btm-0">{drink.drinkName}</h6>
-                      <div className="row btm-0">${drink.drinkPrice}</div>
-                      <em className="row btm-0">{drink.description}</em>
+                    {this.props.admin.drinks.map((drink, i) => (
+                      <div key={i} class="card-panel row">
+                        <img
+                          alt={drink.drinkName}
+                          src={drink.drinkThumb}
+                          className="col s1 panel-thumb"
+                        />
+                        <div className="col-10">
+                          <h6 className="row btm-0">{drink.drinkName}</h6>
+                          <div className="row btm-0">${drink.drinkPrice}</div>
+                          <em className="row btm-0">{drink.description}</em>
+                        </div>
+                        <div
+                          className="btn-small"
+                          onClick={() => this.createOrder(drink)}
+                        >
+                          Order
+                        </div>
                       </div>
-                      <div
-                        className="btn-small"
-                        onClick={() => this.createOrder(drink)}
-                      >
-                        Order
-                      </div>
-                    </div>
-                  ))}
-                  </div>)
-                 : (
+                    ))}
+                  </div>
+                ) : (
                   <h5 className="col-md-9">
                     No Featured Drinks, but your welcome to order from our Full
                     Service Bar
