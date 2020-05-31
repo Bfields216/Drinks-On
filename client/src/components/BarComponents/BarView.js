@@ -107,7 +107,7 @@ class BarView extends Component {
                 {this.props.admin.photos.length > 0 ? (
                   this.props.admin.photos.map((photo, i) => (
                     <div key={i} class="card-panel photos row">
-                    <img alt={`userphoto${i}`} src={photo.img} className="bar-view-photos" />
+                    <img alt={`userphoto${i}`} src={photo.img} className="bar-view-photos col" />
                     </div>
                   ))
                 ) : (
