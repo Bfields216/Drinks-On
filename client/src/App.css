@@ -285,8 +285,10 @@ img.circle {
   padding: 10px !important;
 }
 .card-panel.photos {
- padding: 0 !important;
- margin-left: 1% !important
+  padding: 0 !important;
+  margin-left: 2% !important;
+  margin-bottom: 0;
+  width: 15%;
 }
 .bar-view-btn {
   display: flex;
