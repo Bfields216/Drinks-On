@@ -106,7 +106,9 @@ class BarView extends Component {
                 </Link>
                 {this.props.admin.photos.length > 0 ? (
                   this.props.admin.photos.map((photo, i) => (
-                    <img key={i} alt={`userphoto${i}`} src={photo.img} className="bar-view-photos" />
+                    <div key={i} class="card-panel photos row">
+                    <img alt={`userphoto${i}`} src={photo.img} className="bar-view-photos" />
+                    </div>
                   ))
                 ) : (
                   <h5 className="col-md-9">No Photos..Yet!</h5>

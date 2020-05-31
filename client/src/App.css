@@ -284,6 +284,10 @@ img.circle {
 .card-panel {
   padding: 10px !important;
 }
+.card-panel.photos {
+ padding: 0 !important;
+ margin-left: 1% !important
+}
 .bar-view-btn {
   display: flex;
   flex-wrap: wrap;
@@ -312,8 +316,7 @@ img.circle {
 }
 
 .bar-view-photos {
-  width: 15%;
-  margin: 0.5rem 0 1rem 0;
+  width: 100%;
 }
 #orders-collapsible > .collapsible-body,
 #orders-collapsible-item > .collapsible-body {
@@ -412,11 +415,8 @@ img.circle {
   .bar-view-header-img > h3 {
     white-space: normal;
   }
-  .bar-view-photos {
-    width: 30%;
-    margin: 0.5rem 0 1rem 0;
-  }
   .panel-thumb{
     width: 25%;
+    height: 60%;
   }
 }
