@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const http = require("http");
 // const config = require('config');
 const path = require('path');
 const DrinksController = require("./controllers/drinksController");
@@ -11,18 +12,14 @@ const db = require("./models");
 
 // Bodyparser Middleware
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 require("dotenv").config();
 
-mongoose.set("useCreateIndex", true);
 // Connect to Mongo
-mongoose.connect(process.env.MONGODB_URI,  { useNewUrlParser: true, useUnifiedTopology: true });
-
+mongoose.connect(process.env.MONGODB_URI,  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 const connection = mongoose.connection;
-
 connection.on("connected", () => {
   console.log("Mongoose connected successfully");
 });
@@ -46,7 +43,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const PORT = process.env.PORT || 3001;
+const server = http.createServer(app);
 
-app.listen(PORT, function() {
+server.listen(PORT, function() {
   console.log(`App is running on http://localhost:${PORT}`);
 });

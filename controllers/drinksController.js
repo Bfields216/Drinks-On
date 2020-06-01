@@ -75,7 +75,6 @@ router.delete("/order-summary/drink/:id", function(req, res) {
     });
 });
 router.post("/new", function(req, res) {
-  console.log("You hit the api new route");
   console.log(req.body);
   Drink.create(req.body)
     .then((newDrink) => {
