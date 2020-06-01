@@ -25,7 +25,8 @@ class SideNav extends Component {
 
   render() {
     return this.props.user.isAuthenticated ? (
-      <div className="col text-center bar-view-header-img">
+      <div className="col text-center bar-view-header-img mt-4">
+        <h2>Drinkson</h2>
         <img
           alt=""
           className="circle"
@@ -34,14 +35,27 @@ class SideNav extends Component {
         />
         <h3>J.T. Moola</h3>
         <Collection className="side-nav-collection col-12">
-          <CollectionItem href="#">My Account</CollectionItem>
-          <CollectionItem href="#">Messages</CollectionItem>
-          <CollectionItem href="#">Orders</CollectionItem>
-          <CollectionItem href="#" onClick={this.props.logout}>Logout</CollectionItem>
+          <CollectionItem href="#" className="h4 black-text">
+            My Account
+          </CollectionItem>
+          <CollectionItem href="#" className="h4 black-text">
+            Messages
+          </CollectionItem>
+          <CollectionItem href="#" className="h4 black-text">
+            Orders
+          </CollectionItem>
+          <CollectionItem
+            href="#"
+            className="h4 black-text"
+            onClick={this.props.logout}
+          >
+            Logout
+          </CollectionItem>
         </Collection>
       </div>
     ) : (
-      <div className="col text-center bar-view-header-img">
+      <div className="col text-center bar-view-header-img mt-4">
+        <h2>Drinkson</h2>
         <img
           alt=""
           className="circle"
@@ -49,8 +63,20 @@ class SideNav extends Component {
           src="https://clipartstation.com/wp-content/uploads/2017/11/cocktail-clipart-black-and-white-6.jpg"
         />
         <Collection className="side-nav-collection col-12">
-          <CollectionItem href="#" onClick={this.toggleLogin}>Login</CollectionItem>
-          <CollectionItem href="#" onClick={this.toggleRegister}>Register</CollectionItem>
+          <CollectionItem
+            href="#"
+            onClick={this.toggleLogin}
+            className="h4 black-text"
+          >
+            Login
+          </CollectionItem>
+          <CollectionItem
+            href="#"
+            onClick={this.toggleRegister}
+            className="h4 black-text"
+          >
+            Register
+          </CollectionItem>
         </Collection>
         <LoginModal isOpen={this.state.openLogin} toggle={this.toggleLogin} />
         <RegisterModal
@@ -65,4 +91,4 @@ const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-export default connect(mapStateToProps, {logout})(SideNav);
+export default connect(mapStateToProps, { logout })(SideNav);

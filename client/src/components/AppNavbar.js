@@ -38,7 +38,7 @@ class AppNavbar extends Component {
     const userLinks = (
       <>
         <NavItem>
-            <strong>{user ? `Welcome ${user.name}` : ""}</strong>
+          <strong>{user ? `Welcome ${user.name}` : ""}</strong>
         </NavItem>
         <NavItem>
           <Logout />
@@ -48,13 +48,16 @@ class AppNavbar extends Component {
 
     const guestLinks = (
       <>
-      <NavItem onClick={this.toggleRegister} href="#" className="nav-button">
-      Register
-    </NavItem>
-        <RegisterModal isOpen={this.state.openRegister} toggle={this.toggleRegister}/>
-        <NavItem onClick={this.toggleLogin} href='#' className="nav-button">
+        <NavItem onClick={this.toggleRegister} href="#" className="nav-button">
+          Register
+        </NavItem>
+        <NavItem onClick={this.toggleLogin} href="#" className="nav-button">
           Login
         </NavItem>
+        <RegisterModal
+          isOpen={this.state.openRegister}
+          toggle={this.toggleRegister}
+        />
         <LoginModal isOpen={this.state.openLogin} toggle={this.toggleLogin} />
       </>
     );
@@ -73,8 +76,7 @@ class AppNavbar extends Component {
         options={{
           edge: "right",
         }}
-        sidenav={<SideNav />
-        }
+        sidenav={<SideNav />}
       >
         {isAuthenticated ? userLinks : guestLinks}
       </Navbar>

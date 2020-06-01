@@ -26,15 +26,13 @@ form.search button[type="submit"] {
 
 #link {
   cursor:pointer;
-	color: rgb(181, 182, 183);
+	color: rgb(255, 255, 255);
   text-decoration: none;
-	font-family:Arial;
+  font-family: "Calistoga", cursive;
 	font-size: 15px;
-
 }
 
 #link:hover {
   color: #ffffff;
-
-  
 }
+

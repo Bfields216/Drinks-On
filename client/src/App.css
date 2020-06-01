@@ -2,11 +2,20 @@
   padding: 0;
   margin: 0;
 }
+html,
+body,
+#root {
+  height: 100vh;
+  width: 100vw;
+}
 .nav-wrapper {
   background-color: rgb(72, 1, 1) !important;
   padding: 0 1.5rem !important;
+  font-family: "Calistoga", cursive;
 }
-
+.brand-font {
+  font-family: "Calistoga", cursive;
+}
 .navbar.navbar-dark .navbar-nav .nav-item .nav-link {
   color: rgb(255, 255, 255);
   -webkit-transition: 0.35s;
@@ -78,6 +87,7 @@ form.search button[type="submit"] {
   background-color: rgb(255, 255, 255);
   color: rgb(51, 4, 4);
   font-size: 20px;
+  margin-top: 0.75rem;
 }
 
 .jumbotron {
@@ -187,6 +197,11 @@ a {
 }
 .search-bars-input input {
   width: 75%;
+}
+input:focus {
+  border-bottom: 1px solid rgb(167, 1, 1) !important;
+  -webkit-box-shadow: 0 1px 0 0 rgb(167, 1, 1) !important;
+  box-shadow: 0 1px 0 0 rgb(167, 1, 1) !important;
 }
 .collapsible span.badge {
   margin-left: 14px !important;
@@ -361,11 +376,6 @@ img.circle {
 .send-message-header {
   text-align: center;
 }
-.drinkers-text,
-.omw-text {
-  font-weight: bolder !important;
-  font-style: italic;
-}
 .side-nav-collection {
   padding-left: unset !important;
   padding-right: unset !important;
@@ -401,19 +411,49 @@ img.circle {
   flex-wrap: nowrap !important;
   padding: 1%;
   position: fixed;
-    z-index: 998;
-    background-color: white;
-    border-bottom: 1px solid black;
-    width: 100%;
+  z-index: 998;
+  background-color: white;
+  border-bottom: 1px solid black;
+  width: 100%;
 }
-.panel-thumb{
+.panel-thumb {
   width: 100%;
   padding: 0px !important;
+}
+h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Calistoga", cursive;
+}
+button,
+.btn-small {
+  font-family: "Calistoga", cursive !important;
+  background-color: rgb(72, 1, 1);
+  text-transform: none;
+}
+button:hover,
+button:focus,
+.btn-small:hover,
+.btn-small:hover {
+  background-color: rgb(167, 1, 1);
+}
+.badge {
+  background-color: rgb(167, 1, 1) !important;
+  color: #ffffff !important;
 }
 /* Mobile phones (portrait and landscape) ---------- */
 @media screen and (max-width: 767px) {
   #header-img {
-    margin-top: 10% !important;
+    border: 1px;
     width: 40% !important;
     height: 15vh !important;
   }
@@ -426,7 +466,7 @@ img.circle {
   .bar-view-header-img > h3 {
     white-space: normal;
   }
-  .panel-thumb{
+  .panel-thumb {
     width: 25%;
     height: 60%;
   }

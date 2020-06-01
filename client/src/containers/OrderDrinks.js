@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import SearchForm from "../components/DrinkComponents/SearchForm";
-import OrderBtn from "../components/DrinkComponents/OrderBtn";
 import NavbarWdivs from "../components/NavbarWdivs";
 import Quantity from "../components/DrinkComponents/Quantity";
 import { Collection, CollectionItem } from "react-materialize";
@@ -155,13 +154,13 @@ class OrderDrinks extends Component {
             <SearchForm
               handleFormSubmit={this.handleFormSubmit}
               handleInputChange={this.handleInputChange}
-            />
+              createOrder={this.createOrder} />
           </div>
           <div className="col">
             {this.props.admin.drinks.length > 0 ? (
               <>
                 <h4>Featured Drinks:</h4>
-                <div className="row horizontal-scroll">
+                <div className="row horizontal-scroll btm-0">
                 {this.props.admin.drinks.map((drink, i) => (
                   <div key={i} class="card-panel row">
                     <img alt={drink.drinkName} src={drink.drinkThumb} className="col s1 panel-thumb" />
@@ -186,8 +185,9 @@ class OrderDrinks extends Component {
                 Service Bar
               </h5>
             )}
+            
           </div>
-          <OrderBtn createOrder={this.createOrder} />
+          
 
           <Collection id="order-collection" className="col">
             {this.state.drinks.map((drink, index) => (
@@ -203,8 +203,8 @@ class OrderDrinks extends Component {
                           alt={drink.strDrinkName}
                         />
                       </div>
-                      <h5 className="col-sm-4">
-                        {drink.strDrink}
+                      <div className="col-sm-4">
+                        <h5>{drink.strDrink}</h5>
                         <div>$5.00</div>
                         <Quantity
                   id={index}
@@ -213,7 +213,7 @@ class OrderDrinks extends Component {
                   drinkId={drink.idDrink}
                   displayAmount={this.displayAmount}
                 />
-                      </h5>
+                      </div>
                   <ul className="col-sm-3">
                           <li><h6 >{drink.strIngredient1}</h6></li>
                           <li><h6 >{drink.strIngredient2}</h6></li>

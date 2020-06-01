@@ -80,10 +80,10 @@ class BarView extends Component {
           <div className="row bar-view-header-row">
             <div className="col-11">
               <h1 className="black-text">The Leaky Faucet</h1>
-              <div className="row drinkers-text red-text h5">
+              <div className="row red-text h5">
                 Total Drinkers: {this.props.admin.users.length}
               </div>
-              <div className="row omw-text orange-text h5">
+              <div className="row orange-text h5">
                 OMW!: {this.props.admin.omw.length}
               </div>
               <div className="row valign-wrapper">
@@ -93,7 +93,7 @@ class BarView extends Component {
                 <Icon className={`col-1 text-center ${this.props.user.data.partyOption.buyDrinks ? "" : "grey-text"}`}>local_bar</Icon>
               </div>
               <div className="row btm-0">
-                <div className="btn-small red">Tap out</div>
+                <div className="btn-small black white-text">Tap out</div>
               </div>
 
             </div>

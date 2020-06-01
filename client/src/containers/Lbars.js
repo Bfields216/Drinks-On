@@ -13,10 +13,6 @@ import { Collapsible} from "react-materialize";
 import { storeBars } from "../actions/barsActions";
 import BarInfo from "../components/BarComponents/BarInfo"
 
-// const AnyReactComponent = ({ text }) => <div style={{ color: 'red'}}>{text}</div>;
-
-// API key AIzaSyAlHrNlmCS8c70eIYOlfkD6JijDgE5sfOc
-
 class Bars extends Component {
   state = {
     center: {
@@ -85,39 +81,6 @@ class Bars extends Component {
       [name]: value,
     });
   };
-
-  // event.preventDefault();
-  // var searchArea = $("#newSearch").val();
-  // var geocodingQueryURL =
-  //   "https://maps.googleapis.com/maps/api/geocode/json?address=" +
-  //   searchArea +
-  //   "&key=AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA";
-  // $.ajax({
-  //   url: geocodingQueryURL,
-  //   method: "GET",
-  // }).then(function(response) {
-  //   console.log(response);
-  //   latitude = response.results[0].geometry.location.lat;
-  //   longitude = response.results[0].geometry.location.lng;
-  //   reverseGeoCoding(latitude, longitude);
-  //   initMap();
-  // });
-
-  // loadBars = () => {
-  //   API.getBar()
-  //     .then(res => this.setState({ name: res.data }))
-  //     .catch(err => console.log(err));
-  // };
-  // handledisabled = () => {
-  //  const disabled = this.state.disabled ? disabled: true;
-
-  // }
-  // constructor(props) {
-  //   super(props);
-  //   subscribeToTimer((err, timestamp) => this.setState({
-  //     timestamp
-  //   }));
-  // }
 
   deleteBars = (id) => {
     API.deleteBar(id)
@@ -191,11 +154,12 @@ class Bars extends Component {
                   name="searchValue"
                   onChange={this.handleInputChange}
                   placeholder="Enter Location"
+                  className="mb-0"
                 />
 
                 <button
                   onClick={this.searchNewLocation}
-                  className="btn btn-outline"
+                  className="general-btn btn-lg white black-text mt-0"
                   type="button"
                 >
                   Search
@@ -222,7 +186,7 @@ class Bars extends Component {
 
               <div className="row">
                 <div className="col-sm-6">
-                  <h5 className="card-title">Bars Near You</h5>
+                  <h5 className="card-title text center">Bars Near You</h5>
                   <Collapsible accordion className="list">
                     <BarInfo bar={this.props.admin} checkin={this.checkin} />
                     {this.props.bars.map((bar, index) => (

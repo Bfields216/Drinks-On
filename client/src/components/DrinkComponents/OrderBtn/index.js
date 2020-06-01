@@ -7,7 +7,7 @@ function OrderBtn(props) {
           className="general-btn btn-lg"
           onClick={props.createOrder}
         >
-          View Order Summery
+          View Order Summary
         </button>
     </div>
   );

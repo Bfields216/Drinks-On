@@ -11,12 +11,12 @@ function BarInfo(props) {
       expanded
       icon={<Icon>arrow_drop_down</Icon>}
       header={
-        <div>
+        <h5>
           {props.bar.name}
           <span className="new badge right-align">
             {props.bar.users.length}
           </span>
-        </div>
+        </h5>
       }
       node="div"
       id="collapsible-item"
@@ -26,9 +26,9 @@ function BarInfo(props) {
           <h5>{props.bar.name}</h5>
           <p>{props.bar.address}</p>
 
-          <span className="red-text">Drinkers: {props.bar.users.length}</span>
+          <span className="red-text brand-font">Drinkers: {props.bar.users.length}</span>
           {"  "}
-          <span className="orange-text">OMW!: {props.bar.omw.length}</span>
+          <span className="orange-text brand-font">OMW!: {props.bar.omw.length}</span>
         </div>
         <div className="col-md-5">
           {/* {props.user.isAuthenticated ? (<> */}
