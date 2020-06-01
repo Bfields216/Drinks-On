@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom"
 import axios from "axios";
 import NavbarWdivs from "../components/NavbarWdivs";
 import { Collection, CollectionItem, Icon } from "react-materialize";
@@ -14,7 +15,7 @@ class OrderSummary extends Component {
   };
 
   static propTypes = {
-    auth: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
@@ -109,8 +110,8 @@ class OrderSummary extends Component {
     event.preventDefault();
     console.log(this.state.drinks);
 
-    if (this.props.auth.isAuthenticated) {
-      const username = this.props.auth.user.name;
+    if (this.props.user.isAuthenticated) {
+      const username = this.props.user.user.name;
       const newOrder = {
         name: username,
         order: this.state.drinks,
@@ -150,7 +151,7 @@ class OrderSummary extends Component {
       <>
         <div className="row btm-0 summary-header valign-wrapper">
           <div className="col-sm-1">
-            <Icon>arrow_back</Icon>
+            <Link to="/orderDrinks"><Icon>arrow_back</Icon></Link>
           </div>
           <div className="col-sm-4">
             <h3 className="row btm-0">Order Summary</h3>
@@ -230,7 +231,7 @@ class OrderSummary extends Component {
                     ))}
                   </ul>
                 ) : (
-                  <div className="col-sm-2">{drink.description}</div>
+                  <div className="col-sm-2 text-center valign-wrapper"><h5>{drink.description}</h5></div>
                 )}
               </CollectionItem>
             </>
@@ -242,6 +243,6 @@ class OrderSummary extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  user: state.user,
 });
 export default connect(mapStateToProps, null)(OrderSummary);

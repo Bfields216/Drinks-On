@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { Collection, CollectionItem, Icon } from "react-materialize";
+import { changePartyOptions } from "../../actions/userActions";
 
 // Using the datalist element we can create autofill suggestions based on the props.breeds array
-const DrinkInstructions = (props) => {
+const PartyOptions = (props) => {
   const { buttonLabel, className } = props;
 
   const [modal, setModal] = useState(false);
@@ -16,6 +18,7 @@ const DrinkInstructions = (props) => {
     message: false,
     buyDrinks: false,
   });
+
   const toggleSelect = (event) => {
     const partyOption = event.target.id;
     if (partyOption === "party") {
@@ -33,6 +36,11 @@ const DrinkInstructions = (props) => {
       });
       console.log(partyOption, selected[partyOption]);
     }
+  };
+
+  const submit = () => {
+    props.changePartyOptions(selected);
+    toggle()
   };
   return (
     <>
@@ -121,7 +129,7 @@ const DrinkInstructions = (props) => {
           </Collection>
         </ModalBody>
         <ModalFooter>
-          <Link className="btn-small blue" to="/barView" onClick={toggle}>
+          <Link className="btn-small blue" to="/barView" onClick={submit}>
             To the Bar
           </Link>
         </ModalFooter>
@@ -129,5 +137,9 @@ const DrinkInstructions = (props) => {
     </>
   );
 };
-
-export default DrinkInstructions;
+const mapStateToProps = (state) => ({
+  user: state.user,
+  bars: state.bars,
+  admin: state.admin,
+});
+export default connect(mapStateToProps, { changePartyOptions })(PartyOptions);

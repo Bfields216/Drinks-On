@@ -375,7 +375,9 @@ img.circle {
   white-space: nowrap;
 }
 #summary-collection {
+  margin-top: 7.5%;
   padding-right: unset !important;
+  margin-bottom: 7.5%;
 }
 #summary-collection > .summary-collection-header {
   min-height: unset !important;
@@ -398,6 +400,11 @@ img.circle {
 .summary-header {
   flex-wrap: nowrap !important;
   padding: 1%;
+  position: fixed;
+    z-index: 998;
+    background-color: white;
+    border-bottom: 1px solid black;
+    width: 100%;
 }
 .panel-thumb{
   width: 100%;
@@ -422,5 +429,9 @@ img.circle {
   .panel-thumb{
     width: 25%;
     height: 60%;
+  }
+  #summary-collection {
+    margin-top: 15%;
+    margin-bottom: 20%;
   }
 }

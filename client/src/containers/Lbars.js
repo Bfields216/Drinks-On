@@ -40,7 +40,7 @@ class Bars extends Component {
     // center: "uluru"
   };
   static propTypes = {
-    auth: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
   };
 
   async componentDidMount() {
@@ -63,14 +63,6 @@ class Bars extends Component {
       .get(`/bars/search_nearby/${latitude}/${longitude}`)
       .then((response) => this.props.storeBars(response.data))
       .then(console.log(this.props.bars));
-
-    // axios.get(proxyurl + mapsurl).then((response) => {
-    //   console.log(response);
-    //   this.setState({
-    //     bars: response.data.results,
-    //   });
-    //   console.log(this.state.bars);
-    // });
   };
 
   searchNewLocation = () => {
@@ -134,8 +126,8 @@ class Bars extends Component {
   };
 
   checkin = (event) => {
-    if (this.props.auth.isAuthenticated) {
-      const username = this.props.auth.user.name;
+    if (this.props.user.isAuthenticated) {
+      const username = this.props.user.user.name;
       event.preventDefault();
       const index = event.target.id;
       let currentBars = this.state.currentBars;
@@ -173,7 +165,7 @@ class Bars extends Component {
 
   checkout = (event) => {
     event.preventDefault();
-    const username = this.props.auth.user.name;
+    const username = this.props.user.user.name;
     this.setState({ currentBars: [] });
     axios
       .put("/api/users/checkinBar", {
@@ -280,7 +272,7 @@ class Bars extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  user: state.user,
   bars: state.bars,
   admin: state.admin
 });

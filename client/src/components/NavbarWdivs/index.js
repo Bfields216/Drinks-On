@@ -28,7 +28,7 @@ function NavbarWdivs(props) {
         <Link
           id="link"
           to="/"
-          className="col-sm-3 border text-center h3 p-3 m-0 "
+          className="col-sm-3 text-center h3 p-3 m-0 "
         >
           <div>Home</div>
           <FontAwesomeIcon
@@ -40,7 +40,7 @@ function NavbarWdivs(props) {
         <Link
           id="link"
           to="/bars"
-          className="col-sm-3 border text-center h3 p-3 m-0"
+          className="col-sm-3 text-center h3 p-3 m-0"
         >
           <div>Bars</div>
           <FontAwesomeIcon
@@ -52,7 +52,7 @@ function NavbarWdivs(props) {
         <Link
           id="link"
           to="/OrderDrinks"
-          className="col-sm-3 border text-center h3 p-3 m-0"
+          className="col-sm-3 text-center h3 p-3 m-0"
         >
           <div>Drinks</div>
           <FontAwesomeIcon
@@ -65,7 +65,7 @@ function NavbarWdivs(props) {
         <Link
           id="link"
           to="/admin"
-          className="col-sm-3 border text-center h3 p-3 m-0"
+          className="col-sm-3 text-center h3 p-3 m-0"
         >
           <div>Admin</div>
           <FontAwesomeIcon

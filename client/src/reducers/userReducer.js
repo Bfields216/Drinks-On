@@ -7,14 +7,15 @@ import {
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  REGISTER_FAIL,
+  PARTY_OPTIONS
 } from '../actions/types';
 
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   isLoading: false,
-  user: null
+  data: null
 };
 
 export default function(state = initialState, action) {
@@ -29,7 +30,7 @@ export default function(state = initialState, action) {
         ...state,
         isAuthenticated: true,
         isLoading: false,
-        user: action.payload
+        data: action.payload
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
@@ -48,10 +49,14 @@ export default function(state = initialState, action) {
       return {
         ...state,
         token: null,
-        user: null,
+        data: null,
         isAuthenticated: false,
         isLoading: false
       };
+      case PARTY_OPTIONS:
+        return {...state,
+                data: {...state.date,
+                      partyOption: action.payload}}
     default:
       return state;
   }

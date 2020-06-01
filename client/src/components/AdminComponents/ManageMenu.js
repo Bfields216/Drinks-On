@@ -153,7 +153,7 @@ class ManageMenu extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  user: state.user,
   bars: state.bars,
   admin: state.admin,
 });

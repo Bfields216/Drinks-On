@@ -13,7 +13,7 @@ import {
 import {NavItem} from "react-materialize"
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { login } from '../../actions/authActions';
+import { login } from '../../actions/userActions';
 import { clearErrors } from '../../actions/errorActions';
 
 class LoginModal extends Component {
@@ -42,10 +42,10 @@ class LoginModal extends Component {
       }
     }
 
-    // If authenticated, close modal
+    // If userenticated, close modal
     if (this.state.modal) {
       if (isAuthenticated) {
-        this.toggle();
+        this.props.toggle();
       }
     }
   }
@@ -64,27 +64,20 @@ class LoginModal extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-
     const { email, password } = this.state;
-
     const user = {
       email,
       password
     };
-
     // Attempt to login
     this.props.login(user);
+
   };
 
   render() {
     return (
-      <li>
-        <NavItem onClick={this.toggle} href='#' className="nav-button">
-          Login
-        </NavItem>
-
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Login</ModalHeader>
+              <Modal isOpen={this.props.isOpen} toggle={this.props.toggle}>
+          <ModalHeader toggle={this.props.toggle}>Login</ModalHeader>
           <ModalBody>
             {this.state.msg ? (
               <Alert color='danger'>{this.state.msg}</Alert>
@@ -117,13 +110,13 @@ class LoginModal extends Component {
             </Form>
           </ModalBody>
         </Modal>
-      </li>
+
     );
   }
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  isAuthenticated: state.user.isAuthenticated,
   error: state.error
 });
 

@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const auth = require("../middleware/auth");
 
 router.post("/", (req, res) => {
   const { name, email, password } = req.body;
@@ -50,6 +51,41 @@ router.post("/", (req, res) => {
     });
   });
 });
+router.post("/login", (req, res) => {
+  const { email, password } = req.body;
+
+  // Simple validation
+  if (!email || !password) {
+    return res.status(400).json({ msg: "Please enter all fields" });
+  }
+
+  // Check for existing user
+  User.findOne({ email }).then((user) => {
+    if (!user) return res.status(400).json({ msg: "User Does not exist" });
+
+    // Validate password
+    bcrypt.compare(password, user.password).then((isMatch) => {
+      if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
+
+      jwt.sign(
+        { id: user.id },
+        config.get("jwtSecret"),
+        { expiresIn: 3600 },
+        (err, token) => {
+          if (err) throw err;
+          res.json({
+            token,
+            user: {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+            },
+          });
+        }
+      );
+    });
+  });
+});
 router.put("/checkinBar", (req, res) => {
   const { userId, barName } = req.body;
   console.log(req.body);
@@ -88,5 +124,11 @@ router.get("/:id", (req, res) => {
         error: true,
       });
     });
+});
+router.get("/loadUser/:id", auth, (req, res) => {
+  console.log("controller", req);
+  User.findById(req.params.id)
+    .select("-password")
+    .then((user) => res.json(user));
 });
 module.exports = router;

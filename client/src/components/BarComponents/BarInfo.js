@@ -31,8 +31,17 @@ function BarInfo(props) {
           <span className="orange-text">OMW!: {props.bar.omw.length}</span>
         </div>
         <div className="col-md-5">
+          {/* {props.user.isAuthenticated ? (<> */}
           <PartyOptions buttonLabel="Check-In" />
           <OnMyWayBtn />
+          {/* </>) : (
+            <div className="btn-small" onClick={toggle}>
+        Login
+        <LoginModal isOpen={this.state.openLogin} toggle={this.toggleLogin} />
+        <RegisterModal isOpen={this.state.openRegister} toggle={this.toggleRegister}/>
+      </div>)
+          }
+} */}
         </div>
       </div>
       <div className="row">
@@ -79,7 +88,7 @@ function BarInfo(props) {
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  user: state.user,
   bars: state.bars,
   admin: state.admin,
 });

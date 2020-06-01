@@ -9,8 +9,10 @@ import {
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  REGISTER_FAIL,
+  PARTY_OPTIONS
 } from './types';
+import { get } from 'mongoose';
 
 // Check token & load user
 export const loadUser = () => (dispatch, getState) => {
@@ -18,7 +20,7 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
   axios
-    .get('/api/auth/user', tokenConfig(getState))
+    .get(`/api/user/loadUser/${tokenConfig(getState)}`)
     .then(res =>
       dispatch({
         type: USER_LOADED,
@@ -46,7 +48,7 @@ export const register = ({ name, email, password }) => dispatch => {
   const body = JSON.stringify({ name, email, password });
 
   axios
-    .post('/api/users', body, config)
+    .post('/api/user', body, config)
     .then(res =>
       dispatch({
         type: REGISTER_SUCCESS,
@@ -76,7 +78,7 @@ export const login = ({ email, password }) => dispatch => {
   const body = JSON.stringify({ email, password });
 
   axios
-    .post('/api/auth', body, config)
+    .post('/api/user/login', body, config)
     .then(res =>
       dispatch({
         type: LOGIN_SUCCESS,
@@ -100,11 +102,18 @@ export const logout = () => {
   };
 };
 
+// Change User Party Options
+export const changePartyOptions = (partyOptions) => {
+  return {
+    type: PARTY_OPTIONS,
+    payload: partyOptions
+  }
+}
 // Setup config/headers and token
 export const tokenConfig = getState => {
   // Get token from localstorage
-  const token = getState().auth.token;
-
+  const token = getState().user.token;
+  
   // Headers
   const config = {
     headers: {
@@ -114,8 +123,10 @@ export const tokenConfig = getState => {
 
   // If token, add to headers
   if (token) {
+    console.log("token",token)
     config.headers['x-auth-token'] = token;
-  }
-
-  return config;
+    return config;
+  } else {
+    return null
+  }  
 };

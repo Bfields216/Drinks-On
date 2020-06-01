@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-
+import {Link} from "react-router-dom";
 // import {Container} from "react-bootstrap"
 
 
@@ -67,7 +67,7 @@ class Landing extends React.Component {
       Line.</h5>
 
       <button className="viewMap">
-         <a className="link" href="/Bars">Tap to view nearby bars.</a>
+         <Link className="link" to="/Bars">Tap to view nearby bars.</Link>
          </button>
         
      

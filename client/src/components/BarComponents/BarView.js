@@ -86,12 +86,16 @@ class BarView extends Component {
               <div className="row omw-text orange-text h5">
                 OMW!: {this.props.admin.omw.length}
               </div>
-              <div className="row btm-0">
-                <div className="btn-small">Tap out</div>
-              </div>
-              <div className="row">
+              <div className="row valign-wrapper">
                 <PartyOptions buttonLabel="Party Options" />
+                <Icon className={`col-1 text-center ${this.props.user.data.partyOption.party ? "" : "grey-text"}`}>mood</Icon>
+                <Icon className={`col-1 text-center ${this.props.user.data.partyOption.message ? "" : "grey-text"}`}>message</Icon>
+                <Icon className={`col-1 text-center ${this.props.user.data.partyOption.buyDrinks ? "" : "grey-text"}`}>local_bar</Icon>
               </div>
+              <div className="row btm-0">
+                <div className="btn-small red">Tap out</div>
+              </div>
+
             </div>
           </div>
           <div className="row">
@@ -230,7 +234,7 @@ class BarView extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  user: state.user,
   bars: state.bars,
   admin: state.admin,
 });

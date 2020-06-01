@@ -12,10 +12,10 @@ import LocalBars from "./containers/Lbars";
 import OrderSummary from "./containers/OrderSummary";
 import Admin from "./containers/Admin";
 import BarView from "./components/BarComponents/BarView";
-// import { setCurrentUser, logoutUser } from "./actions/authActions";
+// import { setCurrentUser, logoutUser } from "./actions/userActions";
 import { Provider } from "react-redux";
 import store from "./store";
-import { loadUser } from "./actions/authActions";
+import { loadUser } from "./actions/userActions";
 
 import Home from "./containers/Home";
 

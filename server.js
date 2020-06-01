@@ -4,8 +4,7 @@ const app = express();
 // const config = require('config');
 const path = require('path');
 const DrinksController = require("./controllers/drinksController");
-const UsersController = require("./controllers/usersController");
-const AuthController = require("./controllers/authController");
+const UsersController = require("./controllers/userController");
 const BarController = require("./controllers/barController");
 
 const db = require("./models");
@@ -20,7 +19,7 @@ require("dotenv").config();
 
 mongoose.set("useCreateIndex", true);
 // Connect to Mongo
-mongoose.connect(process.env.MONGODB_URI,  { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI,  { useNewUrlParser: true, useUnifiedTopology: true });
 
 const connection = mongoose.connection;
 
@@ -33,8 +32,7 @@ connection.on("error", err => {
 
   // Use Routes
   app.use('/api/drinks', DrinksController);
-  app.use('/api/users', UsersController);
-  app.use('/api/auth', AuthController);
+  app.use('/api/user', UsersController);
   app.use('/bars', BarController);
 
 // Serve static assets if in production

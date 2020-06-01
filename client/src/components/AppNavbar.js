@@ -3,37 +3,42 @@ import { Link } from "react-router-dom";
 import { Navbar, NavItem, Icon } from "react-materialize";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import RegisterModal from "./AuthComponents/RegisterModal";
-import LoginModal from "./AuthComponents/LoginModal";
-import Logout from "./AuthComponents/Logout";
+import RegisterModal from "./UserComponents/RegisterModal";
+import LoginModal from "./UserComponents/LoginModal";
+import Logout from "./UserComponents/Logout";
 import SideNav from "./SideNav";
 
 class AppNavbar extends Component {
   state = {
+    openLogin: false,
+    openRegister: false,
     isOpen: false,
   };
 
   static propTypes = {
-    auth: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
   };
 
-  toggle = () => {
+  toggleLogin = () => {
     this.setState({
-      isOpen: !this.state.isOpen,
+      openLogin: !this.state.openLogin,
+    });
+  };
+  toggleRegister = () => {
+    this.setState({
+      openRegister: !this.state.openRegister,
     });
   };
 
   render() {
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated, user } = this.props.user;
     console.log(isAuthenticated);
     console.log(this.props);
 
-    const authLinks = (
+    const userLinks = (
       <>
         <NavItem>
-          <span className="navbar-text mr-3">
             <strong>{user ? `Welcome ${user.name}` : ""}</strong>
-          </span>
         </NavItem>
         <NavItem>
           <Logout />
@@ -43,8 +48,14 @@ class AppNavbar extends Component {
 
     const guestLinks = (
       <>
-        <RegisterModal />
-        <LoginModal />
+      <NavItem onClick={this.toggleRegister} href="#" className="nav-button">
+      Register
+    </NavItem>
+        <RegisterModal isOpen={this.state.openRegister} toggle={this.toggleRegister}/>
+        <NavItem onClick={this.toggleLogin} href='#' className="nav-button">
+          Login
+        </NavItem>
+        <LoginModal isOpen={this.state.openLogin} toggle={this.toggleLogin} />
       </>
     );
 
@@ -65,14 +76,14 @@ class AppNavbar extends Component {
         sidenav={<SideNav />
         }
       >
-        {isAuthenticated ? authLinks : guestLinks}
+        {isAuthenticated ? userLinks : guestLinks}
       </Navbar>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  user: state.user,
 });
 
 export default connect(mapStateToProps, null)(AppNavbar);

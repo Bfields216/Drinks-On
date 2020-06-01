@@ -14,3 +14,4 @@ export const ADD_EVENT = "ADD_EVENT";
 export const ADD_ITEM = "ADD_ITEM";
 export const CHECKIN_USERS = "CHECKIN_USERS";
 export const GENERATE_PHOTOS = "GENERATE_PHOTOS";
+export const PARTY_OPTIONS = "PARTY_OPTIONS";

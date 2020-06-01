@@ -23,9 +23,16 @@ const UserSchema = new Schema({
   },
   checkedIn: {
     type: String,
-    required: true,
-    default: "null"
+    default: null
+  },
+  partyOption: {
+    type: Object,
+  },
+  OMW: {
+    type: String,
+    default: null
   }
+
 });
 
 module.exports = User = mongoose.model('user', UserSchema);
