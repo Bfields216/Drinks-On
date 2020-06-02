@@ -6,7 +6,7 @@ import PartyOptions from "./PartyOptions";
 import SendMessage from "./SendMessage";
 import { Collection, CollectionItem, Icon } from "react-materialize";
 import { randomizeUsers, randomizePhotos } from "../../actions/adminActions";
-
+import {toggleModal} from "../../actions/userActions"
 import { Link } from "react-router-dom";
 
 class BarView extends Component {
@@ -87,15 +87,39 @@ class BarView extends Component {
                 OMW!: {this.props.admin.omw.length}
               </div>
               <div className="row valign-wrapper">
-                <PartyOptions buttonLabel="Party Options" />
-                <Icon className={`col-1 text-center ${this.props.user.data.partyOption.party ? "" : "grey-text"}`}>mood</Icon>
-                <Icon className={`col-1 text-center ${this.props.user.data.partyOption.message ? "" : "grey-text"}`}>message</Icon>
-                <Icon className={`col-1 text-center ${this.props.user.data.partyOption.buyDrinks ? "" : "grey-text"}`}>local_bar</Icon>
+                <div
+                  className="btn-small"
+                  onClick={() => this.props.toggleModal("partyOptions")}
+                >
+                  Party Options
+                </div>
+                <Icon
+                  className={`col-1 text-center ${
+                    this.props.user.data.partyOption.party ? "" : "grey-text"
+                  }`}
+                >
+                  mood
+                </Icon>
+                <Icon
+                  className={`col-1 text-center ${
+                    this.props.user.data.partyOption.message ? "" : "grey-text"
+                  }`}
+                >
+                  message
+                </Icon>
+                <Icon
+                  className={`col-1 text-center ${
+                    this.props.user.data.partyOption.buyDrinks
+                      ? ""
+                      : "grey-text"
+                  }`}
+                >
+                  local_bar
+                </Icon>
               </div>
               <div className="row btm-0">
-                <div className="btn-small black white-text">Tap out</div>
+                <div className="btn-small black white-text">Close Tab</div>
               </div>
-
             </div>
           </div>
           <div className="row">
@@ -238,6 +262,6 @@ const mapStateToProps = (state) => ({
   bars: state.bars,
   admin: state.admin,
 });
-export default connect(mapStateToProps, { randomizeUsers, randomizePhotos })(
+export default connect(mapStateToProps, { randomizeUsers, randomizePhotos, toggleModal })(
   BarView
 );

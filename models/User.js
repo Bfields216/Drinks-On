@@ -28,8 +28,12 @@ const UserSchema = new Schema({
   partyOption: {
     type: Object,
   },
-  OMW: {
+  omwTo: {
     type: String,
+    default: null
+  },
+  ETA: {
+    type: Date,
     default: null
   }
 

@@ -21,16 +21,18 @@ import Home from "./containers/Home";
 
 import "./index.css";
 
+
 class App extends Component {
+  
   componentDidMount() {
     store.dispatch(loadUser());
-  }
+  }  
   render() {
     return (
       <Provider store={store}>
         <Router>
           <AppNavbar />
-
+          
           <Route exact path="/" component={Home} />
 
           <Switch>

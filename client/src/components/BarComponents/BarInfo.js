@@ -1,15 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
-import OnMyWayBtn from "../OnMyWayBtn";
-import PartyOptions from "./PartyOptions";
 import { CollapsibleItem, Icon } from "react-materialize";
-// import { storeBars } from "../actions/barsActions";
+import {toggleModal, setOMW} from "../../actions/userActions"
 
 function BarInfo(props) {
+  const omw = (barName) => {
+    props.setOMW(barName);
+    props.toggleModal("omw");
+  }
   return (
     <CollapsibleItem
       expanded
       icon={<Icon>arrow_drop_down</Icon>}
+      className="bar-info-collapsible"
       header={
         <h5>
           {props.bar.name}
@@ -26,14 +29,28 @@ function BarInfo(props) {
           <h5>{props.bar.name}</h5>
           <p>{props.bar.address}</p>
 
-          <span className="red-text brand-font">Drinkers: {props.bar.users.length}</span>
+          <span className="red-text brand-font">
+            Drinkers: {props.bar.users.length}
+          </span>
           {"  "}
-          <span className="orange-text brand-font">OMW!: {props.bar.omw.length}</span>
+          <span className="orange-text brand-font">
+            OMW!: {props.bar.omw.length}
+          </span>
         </div>
         <div className="col-md-5">
           {/* {props.user.isAuthenticated ? (<> */}
-          <PartyOptions buttonLabel="Check-In" />
-          <OnMyWayBtn />
+          <div
+            className="btn-small mb-2"
+            onClick={() => props.toggleModal("partyOptions")}
+          >
+            Check In
+          </div>
+          <div
+            className="btn-small"
+            onClick={() => omw(props.bar.name)}
+          >
+            On Your Way?
+          </div>
           {/* </>) : (
             <div className="btn-small" onClick={toggle}>
         Login
@@ -51,7 +68,11 @@ function BarInfo(props) {
             <div className="row horizontal-scroll">
               {props.admin.drinks.map((drink, i) => (
                 <div class="card-panel row">
-                  <img alt={drink.drinkName} src={drink.drinkThumb} className="col s1 panel-thumb" />
+                  <img
+                    alt={drink.drinkName}
+                    src={drink.drinkThumb}
+                    className="col s1 panel-thumb"
+                  />
                   <div className="col-10">
                     <h6 className="row btm-0">{drink.drinkName}</h6>
                     <div className="row btm-0">${drink.drinkPrice}</div>
@@ -92,4 +113,4 @@ const mapStateToProps = (state) => ({
   bars: state.bars,
   admin: state.admin,
 });
-export default connect(mapStateToProps, null)(BarInfo);
+export default connect(mapStateToProps, {toggleModal, setOMW})(BarInfo);

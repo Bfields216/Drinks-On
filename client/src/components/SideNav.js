@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
-import RegisterModal from "./UserComponents/RegisterModal";
-import LoginModal from "./UserComponents/LoginModal";
-
 import { Collection, CollectionItem } from "react-materialize";
 import { connect } from "react-redux";
-import { logout } from "../actions/userActions";
+import { logout, toggleModal } from "../actions/userActions";
 
 class SideNav extends Component {
   state = {
@@ -41,7 +38,7 @@ class SideNav extends Component {
           <CollectionItem href="#" className="h4 black-text">
             Messages
           </CollectionItem>
-          <CollectionItem href="#" className="h4 black-text">
+          <CollectionItem href="/summary" className="h4 black-text">
             Orders
           </CollectionItem>
           <CollectionItem
@@ -65,24 +62,19 @@ class SideNav extends Component {
         <Collection className="side-nav-collection col-12">
           <CollectionItem
             href="#"
-            onClick={this.toggleLogin}
+            onClick={() => this.props.toggleModal("login")}
             className="h4 black-text"
           >
             Login
           </CollectionItem>
           <CollectionItem
             href="#"
-            onClick={this.toggleRegister}
+            onClick={() => this.props.toggleModal("register")}
             className="h4 black-text"
           >
             Register
           </CollectionItem>
         </Collection>
-        <LoginModal isOpen={this.state.openLogin} toggle={this.toggleLogin} />
-        <RegisterModal
-          isOpen={this.state.openRegister}
-          toggle={this.toggleRegister}
-        />
       </div>
     );
   }
@@ -91,4 +83,4 @@ const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-export default connect(mapStateToProps, { logout })(SideNav);
+export default connect(mapStateToProps, { logout, toggleModal })(SideNav);

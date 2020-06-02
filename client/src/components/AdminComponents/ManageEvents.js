@@ -16,30 +16,6 @@ class ManageEvents extends Component {
     searchQuery: "",
   };
 
-  //   componentDidMount() {
-  //     API.drinks(this.props.match.params.id)
-  //       .then((res) => this.setState({ drinks: drinks.data.drinks }))
-  //       .catch((err) => console.log(err));
-  //     console.log("This is working");
-
-  //     getdrinkbyID = () => {
-  //       axios
-  //         .get("/api/drinks/" + this.props.match.params.id)
-  //         .then((drinks) => {
-  //           console.log(drinks);
-  //           this.setState({
-  //             model: drinks.data.data.model,
-  //             color: drinks.data.data.color,
-  //             year: drinks.data.data.year,
-  //             imageURL: drinks.data.data.imageURL,
-  //             _id: drinks.data.data._id,
-  //           });
-  //         })
-  //         .catch((err) => {
-  //           console.log(err);
-  //         });
-  //     };
-  //   }
   toggle = () => {
     this.setState({ toggle: !this.state.toggle });
   };

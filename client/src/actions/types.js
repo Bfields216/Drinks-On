@@ -15,3 +15,7 @@ export const ADD_ITEM = "ADD_ITEM";
 export const CHECKIN_USERS = "CHECKIN_USERS";
 export const GENERATE_PHOTOS = "GENERATE_PHOTOS";
 export const PARTY_OPTIONS = "PARTY_OPTIONS";
+export const SET_MODAL = "SET_MODAL";
+export const SET_OMW = "SET_OMW";
+export const SET_ETA = "SET_ETA";
+export const CHECK_IN_BAR ="CHECK_IN_BAR";

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   Button,
-  Modal,
   ModalHeader,
   ModalBody,
   Form,
@@ -10,10 +9,9 @@ import {
   Input,
   Alert
 } from 'reactstrap';
-import {NavItem} from "react-materialize"
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { login } from '../../actions/userActions';
+import { login, toggleModal } from '../../actions/userActions';
 import { clearErrors } from '../../actions/errorActions';
 
 class LoginModal extends Component {
@@ -45,7 +43,7 @@ class LoginModal extends Component {
     // If userenticated, close modal
     if (this.state.modal) {
       if (isAuthenticated) {
-        this.props.toggle();
+        this.props.toggleModal(false);
       }
     }
   }
@@ -69,15 +67,17 @@ class LoginModal extends Component {
       email,
       password
     };
+    console.log(user)
     // Attempt to login
     this.props.login(user);
+    this.props.toggleModal(false)
 
   };
 
   render() {
     return (
-              <Modal isOpen={this.props.isOpen} toggle={this.props.toggle}>
-          <ModalHeader toggle={this.props.toggle}>Login</ModalHeader>
+              <>
+          <ModalHeader toggle={() => this.props.toggleModal(false)}>Login</ModalHeader>
           <ModalBody>
             {this.state.msg ? (
               <Alert color='danger'>{this.state.msg}</Alert>
@@ -109,7 +109,7 @@ class LoginModal extends Component {
               </FormGroup>
             </Form>
           </ModalBody>
-        </Modal>
+        </>
 
     );
   }
@@ -122,5 +122,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { login, clearErrors }
+  { login, clearErrors, toggleModal }
 )(LoginModal);

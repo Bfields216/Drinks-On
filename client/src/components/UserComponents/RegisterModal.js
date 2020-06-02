@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   Button,
-  Modal,
   ModalHeader,
   ModalBody,
   Form,
@@ -10,10 +9,9 @@ import {
   Input,
   Alert,
 } from "reactstrap";
-import { NavItem } from "react-materialize";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { register } from "../../actions/userActions";
+import { register,toggleModal } from "../../actions/userActions";
 import { clearErrors } from "../../actions/errorActions";
 
 class RegisterModal extends Component {
@@ -46,7 +44,7 @@ class RegisterModal extends Component {
     // If userenticated, close modal
     if (this.state.modal) {
       if (isAuthenticated) {
-        this.props.toggle();
+        this.props.toggleModal(false);
       }
     }
   }
@@ -69,15 +67,13 @@ class RegisterModal extends Component {
 
     // Attempt to register
     this.props.register(newUser);
+    this.props.toggleModal(false);
   };
 
   render() {
     return (
-      <li>
-        
-
-        <Modal isOpen={this.props.isOpen} toggle={this.props.toggle} id="openRegister">
-          <ModalHeader toggle={this.props.toggle}>Register</ModalHeader>
+      <>
+          <ModalHeader toggle={() => this.props.toggleModal(false)}>Register</ModalHeader>
           <ModalBody>
             {this.state.msg ? (
               <Alert color="danger">{this.state.msg}</Alert>
@@ -119,8 +115,7 @@ class RegisterModal extends Component {
               </FormGroup>
             </Form>
           </ModalBody>
-        </Modal>
-      </li>
+      </>
     );
   }
 }
@@ -130,6 +125,6 @@ const mapStateToProps = (state) => ({
   error: state.error,
 });
 
-export default connect(mapStateToProps, { register, clearErrors })(
+export default connect(mapStateToProps, { register, clearErrors, toggleModal })(
   RegisterModal
 );

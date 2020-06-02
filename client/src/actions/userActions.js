@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { returnErrors } from './errorActions';
+import axios from "axios";
+import { returnErrors } from "./errorActions";
 
 import {
   USER_LOADED,
@@ -10,10 +10,21 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  PARTY_OPTIONS
-} from './types';
-import { get } from 'mongoose';
-
+  PARTY_OPTIONS,
+  SET_MODAL,
+  SET_OMW,
+  SET_ETA,
+  CHECK_IN_BAR
+} from "./types";
+import { get } from "mongoose";
+// Toggle Modal
+export const toggleModal = (modalType) => (dispatch) => {
+  if (modalType) {
+    dispatch({ type: SET_MODAL, payload: modalType });
+  } else {
+    dispatch({ type: SET_MODAL, payload: false });
+  }
+};
 // Check token & load user
 export const loadUser = () => (dispatch, getState) => {
   // User loading
@@ -21,76 +32,76 @@ export const loadUser = () => (dispatch, getState) => {
 
   axios
     .get(`/api/user/loadUser/${tokenConfig(getState)}`)
-    .then(res =>
+    .then((res) =>
       dispatch({
         type: USER_LOADED,
-        payload: res.data
+        payload: res.data,
       })
     )
-    .catch(err => {
+    .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
-        type: AUTH_ERROR
+        type: AUTH_ERROR,
       });
     });
 };
 
 // Register User
-export const register = ({ name, email, password }) => dispatch => {
+export const register = ({ name, email, password }) => (dispatch) => {
   // Headers
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      "Content-Type": "application/json",
+    },
   };
 
   // Request body
   const body = JSON.stringify({ name, email, password });
 
   axios
-    .post('/api/user', body, config)
-    .then(res =>
+    .post("/api/user", body, config)
+    .then((res) =>
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: res.data
+        payload: res.data,
       })
     )
-    .catch(err => {
+    .catch((err) => {
       dispatch(
-        returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL')
+        returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
       );
       dispatch({
-        type: REGISTER_FAIL
+        type: REGISTER_FAIL,
       });
     });
 };
 
 // Login User
-export const login = ({ email, password }) => dispatch => {
+export const login = ({ email, password }) => (dispatch) => {
   // Headers
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      "Content-Type": "application/json",
+    },
   };
 
   // Request body
   const body = JSON.stringify({ email, password });
 
   axios
-    .post('/api/user/login', body, config)
-    .then(res =>
+    .post("/api/user/login", body, config)
+    .then((res) =>
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: res.data
+        payload: res.data.user,
       })
     )
-    .catch(err => {
+    .catch((err) => {
       dispatch(
-        returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
+        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
       );
       dispatch({
-        type: LOGIN_FAIL
+        type: LOGIN_FAIL,
       });
     });
 };
@@ -98,35 +109,55 @@ export const login = ({ email, password }) => dispatch => {
 // Logout User
 export const logout = () => {
   return {
-    type: LOGOUT_SUCCESS
+    type: LOGOUT_SUCCESS,
   };
 };
 
 // Change User Party Options
-export const changePartyOptions = (partyOptions) => {
-  return {
+export const changePartyOptions = (partyOptions) => (dispatch) => {
+  dispatch( {
     type: PARTY_OPTIONS,
-    payload: partyOptions
-  }
+    payload: partyOptions,
+  })
+};
+
+// Set which bar user is OMW
+export const setOMW = (barName) => (dispatch) => {
+  dispatch({
+    type: SET_OMW,
+    payload: barName
+  })
+}
+export const setETA = (eta) => (dispatch) => {
+  dispatch({
+    type: SET_ETA,
+    payload: eta
+  })
+}
+export const checkIntoBar = (barName) => (dispatch) => {
+  dispatch({
+    type: CHECK_IN_BAR,
+    payload: barName
+  })
 }
 // Setup config/headers and token
-export const tokenConfig = getState => {
+export const tokenConfig = (getState) => {
   // Get token from localstorage
   const token = getState().user.token;
-  
+
   // Headers
   const config = {
     headers: {
-      'Content-type': 'application/json'
-    }
+      "Content-type": "application/json",
+    },
   };
 
   // If token, add to headers
   if (token) {
-    console.log("token",token)
-    config.headers['x-auth-token'] = token;
+    console.log("token", token);
+    config.headers["x-auth-token"] = token;
     return config;
   } else {
-    return null
-  }  
+    return null;
+  }
 };

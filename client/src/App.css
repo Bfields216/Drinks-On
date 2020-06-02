@@ -450,6 +450,11 @@ button:focus,
   background-color: rgb(167, 1, 1) !important;
   color: #ffffff !important;
 }
+.bar-info-collapsible > .collapsible-body {
+  display: flex !important;
+  flex-wrap: wrap !important
+}
+
 /* Mobile phones (portrait and landscape) ---------- */
 @media screen and (max-width: 767px) {
   #header-img {
@@ -473,5 +478,11 @@ button:focus,
   #summary-collection {
     margin-top: 15%;
     margin-bottom: 20%;
+  }
+  .bar-info-collapsible > .collapsible-body >.row >.col-md-5 {
+    display: flex !important;
+  }
+  .bar-info-collapsible > .collapsible-body >.row >.col-md-5>.btn-small {
+    margin-right: .5rem;
   }
 }

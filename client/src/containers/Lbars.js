@@ -45,6 +45,12 @@ class Bars extends Component {
     this.setState({ center: { lat: latitude, lng: longitude } }, () =>
       this.searchBars()
     );
+
+    if (this.props.user.isAuthenticated) {
+      if (typeof this.props.user.data.omwTo == 'string') {
+        this.props.toggleModal("waiting");
+      }
+    }
   }
   getUserPosition() {
     return new Promise((resolve, reject) => {
@@ -185,7 +191,7 @@ class Bars extends Component {
               </div>
 
               <div className="row">
-                <div className="col-sm-6">
+                <div className="col">
                   <h5 className="card-title text center">Bars Near You</h5>
                   <Collapsible accordion className="list">
                     <BarInfo bar={this.props.admin} checkin={this.checkin} />
@@ -193,38 +199,6 @@ class Bars extends Component {
                       <BarInfo key={index} bar={bar} checkin={this.checkin} />
                     ))}
                   </Collapsible>
-                </div>
-                <div className="col-sm-6">
-                  <div className="card">
-                    <div className="card-body">
-                      <h5 className="card-title">Current Location</h5>
-                      <ListGroup className="list">
-                        <ListGroupItem>
-                          {this.state.currentBars.map((bar, index) => (
-                            <div className="row border" key={bar.id}>
-                              <div className="col-md-8">
-                                <div className="bar-name">{bar.name}</div>
-                                <p>{bar.formatted_address}</p>
-                                <h6>
-                                  There are currently {this.state.users.length}{" "}
-                                  drinkers at this location.
-                                </h6>
-                                {this.state.users.map((user, index) => (
-                                  <div className="row border" key={index}>
-                                    <div className="col-md-8">
-                                      <h6>{user.name}</h6>
-                                      {/* <SendDrinkModal name={user.name} /> */}
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                              <CheckoutBtnLB checkout={this.checkout} />
-                            </div>
-                          ))}
-                        </ListGroupItem>
-                      </ListGroup>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>

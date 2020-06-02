@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, NavItem, Icon } from "react-materialize";
 import { connect } from "react-redux";
+import { Modal } from "reactstrap";
 import PropTypes from "prop-types";
 import RegisterModal from "./UserComponents/RegisterModal";
 import LoginModal from "./UserComponents/LoginModal";
+import PartyOptions from "./BarComponents/PartyOptions";
 import Logout from "./UserComponents/Logout";
 import SideNav from "./SideNav";
+import { toggleModal } from "../actions/userActions";
+import OmwModal from "./BarComponents/OmwModal";
+import WaitingModal from "./BarComponents/WaitingModal";
 
 class AppNavbar extends Component {
   state = {
@@ -29,16 +34,32 @@ class AppNavbar extends Component {
       openRegister: !this.state.openRegister,
     });
   };
-
+  renderModal() {
+    let modalType = this.props.user.modalType;
+    switch (modalType) {
+      case "login":
+        return <LoginModal />;
+      case "register":
+        return <RegisterModal />;
+      case "partyOptions":
+        return <PartyOptions />;
+      case "omw":
+        return <OmwModal />;
+      case "waiting":
+        return <WaitingModal />;
+      default:
+        return "";
+    }
+  }
   render() {
-    const { isAuthenticated, user } = this.props.user;
-    console.log(isAuthenticated);
-    console.log(this.props);
+    const { isAuthenticated, data } = this.props.user;
+
+    let modalType = this.props.user.modalType;
 
     const userLinks = (
       <>
         <NavItem>
-          <strong>{user ? `Welcome ${user.name}` : ""}</strong>
+          <strong>{data ? `Welcome ${data.name}` : ""}</strong>
         </NavItem>
         <NavItem>
           <Logout />
@@ -48,17 +69,20 @@ class AppNavbar extends Component {
 
     const guestLinks = (
       <>
-        <NavItem onClick={this.toggleRegister} href="#" className="nav-button">
+        <NavItem
+          onClick={() => this.props.toggleModal("register")}
+          href="#"
+          className="nav-button"
+        >
           Register
         </NavItem>
-        <NavItem onClick={this.toggleLogin} href="#" className="nav-button">
+        <NavItem
+          onClick={() => this.props.toggleModal("login")}
+          href="#"
+          className="nav-button"
+        >
           Login
         </NavItem>
-        <RegisterModal
-          isOpen={this.state.openRegister}
-          toggle={this.toggleRegister}
-        />
-        <LoginModal isOpen={this.state.openLogin} toggle={this.toggleLogin} />
       </>
     );
 
@@ -79,6 +103,12 @@ class AppNavbar extends Component {
         sidenav={<SideNav />}
       >
         {isAuthenticated ? userLinks : guestLinks}
+        <Modal
+          isOpen={modalType ? true : false}
+          toggle={() => this.props.toggleModal(false)}
+        >
+          {this.renderModal()}
+        </Modal>
       </Navbar>
     );
   }
@@ -88,4 +118,4 @@ const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-export default connect(mapStateToProps, null)(AppNavbar);
+export default connect(mapStateToProps, { toggleModal })(AppNavbar);
