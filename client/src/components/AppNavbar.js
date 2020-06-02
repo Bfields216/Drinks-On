@@ -12,6 +12,10 @@ import SideNav from "./SideNav";
 import { toggleModal } from "../actions/userActions";
 import OmwModal from "./BarComponents/OmwModal";
 import WaitingModal from "./BarComponents/WaitingModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faGlassCheers } from "@fortawesome/free-solid-svg-icons";
+library.add(faGlassCheers);
 
 class AppNavbar extends Component {
   state = {
@@ -92,7 +96,8 @@ class AppNavbar extends Component {
         alignLinks="right"
         brand={
           <Link to="/" className="brand-logo">
-            Drinkson
+            <FontAwesomeIcon icon={faGlassCheers} size="1x" />
+            {" "}Drinkson
           </Link>
         }
         id="mobile-nav"

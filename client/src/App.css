@@ -35,9 +35,6 @@ body,
   color: inherit !important;
   text-decoration: none !important;
 }
-.brand-logo {
-  font-size: 2.8rem !important;
-}
 #bottom-nav > .col-sm-3 {
   flex: 0 0 25%;
   max-width: 25%;
@@ -483,11 +480,11 @@ button:focus,
   background-color: rgb(167, 1, 1) !important;
   color: #ffffff !important;
 }
-.bar-info-collapsible > .collapsible-body {
-  display: flex !important;
-  flex-wrap: wrap !important;
-}
 
+.row.bar-info{
+  width: 100%;
+  margin-bottom: 0px
+}
 /* Mobile phones (portrait and landscape) ---------- */
 @media screen and (max-width: 767px) {
   #header-img {

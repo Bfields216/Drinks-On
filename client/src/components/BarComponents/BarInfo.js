@@ -24,8 +24,8 @@ function BarInfo(props) {
       node="div"
       id="collapsible-item"
     >
-      <div className="row">
-        <div className="col-md-7" key={props.bar.id}>
+      <div className="row bar-info">
+        <div className="col-md-8" key={props.bar.id}>
           <h5>{props.bar.name}</h5>
           <p>{props.bar.address}</p>
 
@@ -37,16 +37,16 @@ function BarInfo(props) {
             OMW!: {props.bar.omw.length}
           </span>
         </div>
-        <div className="col-md-5">
+        <div className="col-md-3 row">
           {/* {props.user.isAuthenticated ? (<> */}
           <div
-            className="btn-small mb-2"
+            className="btn-small col-12 mb-2"
             onClick={() => props.toggleModal("partyOptions")}
           >
             Check In
           </div>
           <div
-            className="btn-small"
+            className="btn-small col-12"
             onClick={() => omw(props.bar.name)}
           >
             On Your Way?
@@ -61,8 +61,8 @@ function BarInfo(props) {
 } */}
         </div>
       </div>
-      <div className="row">
-        <div className="col-md-12">
+      <div className="row bar-info">
+        <div className="col-md-7">
           <h6>Featured Drinks</h6>
           {props.admin.drinks.length > 0 ? (
             <div className="row horizontal-scroll">

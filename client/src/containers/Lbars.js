@@ -191,7 +191,7 @@ class Bars extends Component {
               </div>
 
               <div className="row">
-                <div className="col">
+                <div className="col-12">
                   <h5 className="card-title text center">Bars Near You</h5>
                   <Collapsible accordion className="list">
                     <BarInfo bar={this.props.admin} checkin={this.checkin} />
