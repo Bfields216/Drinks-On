@@ -35,7 +35,7 @@ export const randomizeUsers = () => (dispatch) => {
 };
 export const randomizePhotos = () => (dispatch) => {
   let photos = [];
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 10; i++) {
     const photo = {
         img: faker.image.image()
     }

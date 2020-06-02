@@ -228,6 +228,14 @@ span.badge.new:after {
   white-space: normal;
   width: unset;
 }
+.row.horizontal-scroll {
+  grid-column: 2 / 3;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-flow: column;
+  grid-auto-columns: 25%;
+  gap: 0.5em;
+}
 .create-event,
 .create-event > .input-field {
   margin-bottom: 0px !important;
@@ -303,7 +311,7 @@ img.circle {
   padding: 0 !important;
   margin-left: 2% !important;
   margin-bottom: 0;
-  width: 20%;
+  width: 100%;
 }
 .bar-view-btn {
   display: flex;
@@ -332,10 +340,16 @@ img.circle {
   padding: 0px !important;
 }
 
-.bar-view-photos {
+.bar-photos-img {
   width: 100%;
   height: 100%;
   padding: 0 !important;
+}
+#bar-photos {
+  flex-wrap: unset !important;
+  display: grid;
+  grid-template-columns: 1fr 7fr 1em;
+  grid-gap: .5em;
 }
 #orders-collapsible > .collapsible-body,
 #orders-collapsible-item > .collapsible-body {
@@ -366,9 +380,9 @@ img.circle {
 .modal-footer {
   border-top: unset !important;
 }
-.modal-header {
-  /* border-bottom: unset !important; */
-}
+/* .modal-header {
+  border-bottom: unset !important;
+} */
 .modal-footer > .btn-small {
   width: 100%;
   text-decoration: none;
@@ -452,7 +466,7 @@ button:focus,
 }
 .bar-info-collapsible > .collapsible-body {
   display: flex !important;
-  flex-wrap: wrap !important
+  flex-wrap: wrap !important;
 }
 
 /* Mobile phones (portrait and landscape) ---------- */
@@ -479,10 +493,13 @@ button:focus,
     margin-top: 15%;
     margin-bottom: 20%;
   }
-  .bar-info-collapsible > .collapsible-body >.row >.col-md-5 {
+  .bar-info-collapsible > .collapsible-body > .row > .col-md-5 {
     display: flex !important;
   }
-  .bar-info-collapsible > .collapsible-body >.row >.col-md-5>.btn-small {
-    margin-right: .5rem;
+  .bar-info-collapsible > .collapsible-body > .row > .col-md-5 > .btn-small {
+    margin-right: 0.5rem;
+  }
+  .row.horizontal-scroll {
+    grid-auto-columns: 50%;
   }
 }

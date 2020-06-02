@@ -93,7 +93,7 @@ class BarView extends Component {
                 >
                   Party Options
                 </div>
-                <Icon
+                {/* <Icon
                   className={`col-1 text-center ${
                     this.props.user.data.partyOption.party ? "" : "grey-text"
                   }`}
@@ -115,7 +115,7 @@ class BarView extends Component {
                   }`}
                 >
                   local_bar
-                </Icon>
+                </Icon> */}
               </div>
               <div className="row btm-0">
                 <div className="btn-small black white-text">Close Tab</div>
@@ -125,7 +125,7 @@ class BarView extends Component {
           <div className="row">
             <div className="col-12">
               <h4>Photos</h4>
-              <div className="row horizontal-scroll">
+              <div id="bar-photos" className="row">
                 <Link to="/" className="">
                   <div class="card-panel col btn-large waves-effect waves-light grey bar-view-btn">
                     <div>Add </div>
@@ -139,7 +139,7 @@ class BarView extends Component {
                         <img
                           alt={`userphoto${i}`}
                           src={photo.img}
-                          className="bar-view-photos col"
+                          className="bar-photos-img col"
                         />
                       </div>
                     ))
