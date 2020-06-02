@@ -151,7 +151,7 @@ class BarView extends Component {
             </div>
             <div className="col-12">
               <h4>Featured Drinks:</h4>
-              <div className="row horizontal-scroll">
+              <div id="bar-drinks" className="row">
                 <Link to="/orderDrinks" className="">
                   <div class="card-panel col btn-large waves-effect waves-light grey bar-view-btn">
                     <div>order</div>
@@ -161,13 +161,13 @@ class BarView extends Component {
                 {this.props.admin.drinks.length > 0 ? (
                   <div className="row horizontal-scroll">
                     {this.props.admin.drinks.map((drink, i) => (
-                      <div key={i} class="card-panel row">
+                      <div key={i} class="card-panel drinks row">
                         <img
                           alt={drink.drinkName}
                           src={drink.drinkThumb}
-                          className="col s1 panel-thumb"
+                          className="bar-drinks-img"
                         />
-                        <div className="col-10">
+                        <div className="col">
                           <h6 className="row btm-0">{drink.drinkName}</h6>
                           <div className="row btm-0">${drink.drinkPrice}</div>
                           <em className="row btm-0">{drink.description}</em>

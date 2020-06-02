@@ -67,13 +67,13 @@ function BarInfo(props) {
           {props.admin.drinks.length > 0 ? (
             <div className="row horizontal-scroll">
               {props.admin.drinks.map((drink, i) => (
-                <div class="card-panel row">
+                <div class="card-panel drinks row">
                   <img
                     alt={drink.drinkName}
                     src={drink.drinkThumb}
-                    className="col s1 panel-thumb"
+                    className="bar-drinks-img"
                   />
-                  <div className="col-10">
+                  <div className="col">
                     <h6 className="row btm-0">{drink.drinkName}</h6>
                     <div className="row btm-0">${drink.drinkPrice}</div>
                     <em className="row btm-0">{drink.description}</em>
@@ -95,7 +95,7 @@ function BarInfo(props) {
           <div className="row horizontal-scroll">
             {props.admin.events.length > 0
               ? props.admin.events.map((event, i) => (
-                  <div class="card-panel col-sm-1">
+                  <div class="card-panel events">
                     <h6 className="row">{event.name}</h6>
                     <div className="row">{event.date}</div>
                   </div>

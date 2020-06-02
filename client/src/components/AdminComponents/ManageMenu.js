@@ -44,14 +44,16 @@ class ManageMenu extends Component {
   };
   addNewItem = async () => {
     let newItem = {
-      drinkId: Math.random().toString(36).substr(2, 5), 
+      drinkId: Math.random()
+        .toString(36)
+        .substr(2, 5),
       drinkThumb: this.state.itemThumb,
       drinkName: this.state.itemName,
       drinkPrice: this.state.itemPrice,
       ingredients: [],
       instructions: this.state.instructions,
       description: this.state.itemDescription,
-      quantity: 1
+      quantity: 1,
     };
     console.log(newItem);
     await this.props.storeItem(newItem);
@@ -81,20 +83,24 @@ class ManageMenu extends Component {
         <h5>Featured Items:</h5>
         <div className="row horizontal-scroll">
           {this.props.admin.drinks.map((drink, i) => (
-            <div class="card-panel row">
-            <img alt={drink.drinkName} src={drink.drinkThumb} className="col s1 panel-thumb" />
-            <div className="col-10">
-            <h6 className="row btm-0">{drink.drinkName}</h6>
-            <div className="row btm-0">${drink.drinkPrice}</div>
-            <em className="row btm-0">{drink.description}</em>
+            <div class="card-panel drinks row">
+              <img
+                alt={drink.drinkName}
+                src={drink.drinkThumb}
+                className="bar-drinks-img"
+              />
+              <div className="col">
+                <h6 className="row btm-0">{drink.drinkName}</h6>
+                <div className="row btm-0">${drink.drinkPrice}</div>
+                <em className="row btm-0">{drink.description}</em>
+              </div>
+              <div
+                className="btn-small"
+                // onClick={() => this.createOrder(drink)}
+              >
+                Edit
+              </div>
             </div>
-            <div
-              className="btn-small"
-              // onClick={() => this.createOrder(drink)}
-            >
-              Edit
-            </div>
-          </div>
           ))}
         </div>
         <div className="btn-small" onClick={this.toggle}>

@@ -61,7 +61,7 @@ class ManageEvents extends Component {
         <h5>Upcoming Events:</h5>
         <div className="row horizontal-scroll">
           {this.props.admin.events.map((event, i) => (
-            <div class="card-panel col-sm-1">
+            <div class="card-panel events">
               <h6 className="row btm-0">{event.name}</h6>
               <div className="row btm-0">{event.date}</div>
               <div className="btn-small">Edit</div>
