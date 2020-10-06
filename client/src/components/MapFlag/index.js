@@ -1,7 +1,21 @@
 import React, { Component } from "react";
-import "./style.css";
+import { Chip, Icon } from "react-materialize";
+// import { MapFlagStyle } from "./MapFlagStyle";
 
-function MapFlag(props) {
-  return <div>{props.text}</div>;
+export default class MapFlag extends Component {
+  render() {
+    return (
+      <>
+        <Chip
+          close={false}
+          className="red lighten-2 "
+          closeIcon={<Icon className="close">close</Icon>}
+          options={null}
+        >
+          
+          <div className="map-chip valign-wrapper"><Icon className="responsive-img">local_bar</Icon>{this.props.text}</div>
+        </Chip>
+      </>
+    );
+  }
 }
-export default MapFlag;

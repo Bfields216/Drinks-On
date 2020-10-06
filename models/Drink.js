@@ -11,20 +11,26 @@ var DrinkSchema = new Schema({
   },
   drinkThumb: {
     type: String,
-    required: true
+    required: true,
+    default: "https://www.acouplecooks.com/wp-content/uploads/2019/05/Gimlet-005.jpg"
   },
   drinkName: {
     type: String,
     required: true
   },
+  drinkPrice: {
+    type: Number,
+    required: false,
+    default: 0
+  },
   ingredients: [ingredientSchema],
-  glass: {
+  instructions: {
     type: String,
     required: false
   },
-  instructions: {
+  description: {
     type: String,
-    required: true
+    required: false
   },
   quantity: {
     type: Number,

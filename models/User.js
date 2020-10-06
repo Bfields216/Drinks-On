@@ -20,7 +20,23 @@ const UserSchema = new Schema({
   register_date: {
     type: Date,
     default: Date.now
+  },
+  checkedIn: {
+    type: String,
+    default: null
+  },
+  partyOption: {
+    type: Object,
+  },
+  omwTo: {
+    type: String,
+    default: null
+  },
+  ETA: {
+    type: Date,
+    default: null
   }
+
 });
 
 module.exports = User = mongoose.model('user', UserSchema);

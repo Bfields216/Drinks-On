@@ -1,88 +1,85 @@
-
 import React, { Component } from "react";
+import {Link} from "react-router-dom"
 import axios from "axios";
-import CheckOutBtn from "../components/CheckOutBtn";
 import NavbarWdivs from "../components/NavbarWdivs";
-import { Container, Jumbotron} from "react-bootstrap";
-// import TopNav from "../components/TopNavbar";
-
-
-import { library } from "@fortawesome/fontawesome-svg-core";
-// import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faMinusCircle, faPlusCircle} from "@fortawesome/free-solid-svg-icons";
-
-// import { fad } from '@fortawesome/pro-duotone-svg-icons'
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-library.add(faMinusCircle, faPlusCircle);
+import { Collection, CollectionItem, Icon } from "react-materialize";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 // import { Link } from "react-router-dom";
 let userId = "";
 
 class OrderSummary extends Component {
   state = {
     drinks: [],
-    currentOrder: []
+    currentOrder: [],
+  };
+
+  static propTypes = {
+    user: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
     axios
       .get("/api/drinks/order-summary")
-      .then(response => {
+      .then((response) => {
         console.log(response.data.data);
         this.setState({
-          drinks: response.data.data
+          drinks: response.data.data,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
     axios
       .get(`/api/drinks/order-summary/${userId}`)
-      .then(response => {
+      .then((response) => {
         console.log(response.data.data);
         this.setState({
-          currentOrder: response.data.data
+          currentOrder: response.data.data,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }
 
-  removeDrink = event => {
+  removeDrink = (event) => {
     event.preventDefault();
     const id = event.target.id;
+    console.log(id);
     const drinkToBeRemoved = this.state.drinks[id]._id;
-    let shouldDelete = window.confirm(
-      "Are you sure you want to delete this drink?"
-    );
-    // if (shouldDelete === true) {
-      axios
-        .delete(`/api/drinks/order-summary/drink/${drinkToBeRemoved}`)
-        .then(response => {
-          console.log(response);
-          alert("Drink has been removed");
-          this.props.history.push("/summary");
-        })
-        .catch(err => {
-          console.log(err);
-          alert("Failed to create: " + err.message);
-        });
-      let drinksCopy = Array.from(this.state.drinks);
-      if (id !== -1) {
-        drinksCopy.splice(id, 1);
-        this.setState({ drinks: drinksCopy });
-      }
+    axios
+      .delete(`/api/drinks/order-summary/drink/${drinkToBeRemoved}`)
+      .then((response) => {
+        console.log(response);
+        alert("Drink has been removed");
+        this.props.history.push("/summary");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Failed to create: " + err.message);
+      });
+    let drinksCopy = Array.from(this.state.drinks);
+    if (id !== -1) {
+      drinksCopy.splice(id, 1);
+      this.setState({ drinks: drinksCopy });
+    }
     // }
   };
-
-  changeMeasure (id,name,value){
+  calculateTotal = () => {
+    let total = 0;
+    this.state.drinks.map((drink) => {
+      total = total + drink.drinkPrice;
+      return total
+    });
+    return total;
+  };
+  changeMeasure(id, name, value) {
     // const { name, id, value } = event.target;
     console.log(name);
     console.log(id);
     console.log(value);
-    this.setState(state => {
+    this.setState((state) => {
       const list1 = state.drinks.map((item, j) => {
         if (parseInt(id) === parseInt(j)) {
           console.log(item);
@@ -107,116 +104,145 @@ class OrderSummary extends Component {
       return list1;
       // this.props.history.push("/summary");
     });
-  };
+  }
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
     console.log(this.state.drinks);
-    event.preventDefault();
-    // const id = event.target.id;
-    const newOrder = {
-      name: "Jimmy",
-      order: this.state.drinks
-    };
-    console.log(newOrder);
 
-    axios
-      .post("/api/drinks/order-summary", newOrder)
-      .then(response => {
-        console.log(response.data.data._id);
-        userId = response.data.data._id;
-      })
-      .catch(err => {
-        console.log(err);
-        alert("Failed to create: " + err.message);
-      });
-
-    this.state.drinks.map((drink, i) => {
+    if (this.props.user.isAuthenticated) {
+      const username = this.props.user.user.name;
+      const newOrder = {
+        name: username,
+        order: this.state.drinks,
+      };
+      console.log(newOrder);
       axios
-        .delete(`/api/drinks/order-summary/drink/${drink._id}`)
-        .then(response => {
-          console.log(response);
-          this.props.history.push("/summary");
+        .post("/api/drinks/order-summary", newOrder)
+        .then((response) => {
+          console.log(response.data.data._id);
+          userId = response.data.data._id;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
           alert("Failed to create: " + err.message);
         });
-    });
-    this.setState({ drinks: [] });
-    };
+      this.state.drinks.map((drink, i) => {
+        axios
+          .delete(`/api/drinks/order-summary/drink/${drink._id}`)
+          .then((response) => {
+            console.log(response);
+            this.props.history.push("/summary");
+          })
+          .catch((err) => {
+            console.log(err);
+            alert("Failed to create: " + err.message);
+          });
+          return null
+      });
+      this.setState({ drinks: [] });
+    } else {
+      this.props.history.push("/");
+    }
+  };
 
   render() {
     return (
       <>
-      <Jumbotron className="list-container">
-      <h1>Edit Drinks</h1>
-      
-
-      
-
-        <Container className="drink-list">
-        {this.state.drinks.map((drink, index) => (
-          <div className="row border" key={drink.idDrink}>
-            <div className="col-sm-2 border">
-              <img
-                className="w-100"
-                src={drink.drinkThumb}
-                alt={drink.drinkName}
-              />
+        <div className="row btm-0 summary-header valign-wrapper">
+          <div className="col-sm-1">
+            <Link to="/orderDrinks"><Icon>arrow_back</Icon></Link>
+          </div>
+          <div className="col-sm-4">
+            <h3 className="row btm-0">Order Summary</h3>
+            <h4 className="row btm-0 green-text">
+              Total:${this.calculateTotal()}
+            </h4>
+          </div>
+          <div className="col-sm-2">
+            <div
+              className="btn-small btn-block green"
+              onClick={this.handleFormSubmit}
+            >
+              Place Order
             </div>
-            <div id="edit-btn" className="col-md-8">
-              <h1>{drink.drinkName}</h1>
-              {drink.ingredients.map((ingredient, i) => (
-                <>
-                <p>
-                  {ingredient.name}
-                  
-                  </p>
-                  <div>
-                  <FontAwesomeIcon
-                  icon={faPlusCircle}
-                  size="2x"
-                  color="gray"
-                  id={index}
-                  name={i}
-                  value="+"
-                  onClick={() => this.changeMeasure((index),(i),"+")}
-                  />
-                  <span> {ingredient.measure} </span> 
-                      
-                          <FontAwesomeIcon
-                            icon={faMinusCircle}
-                            size="2x"
-                            color="gray"
-                            id={index}
-                            name={i}
-                            value="-"
-                            onClick={() => this.changeMeasure((index),(i),"-")}
-                          />
-                          </div>
-                </>
-                         
-               
-              ))}
-              <span className="col-sm-2">
-              <button
-              className="general-btn"
-              id={index}
-              onClick={this.removeDrink}
+          </div>
+        </div>
+
+        <Collection id="summary-collection" className=" drink-list">
+          {this.state.drinks.map((drink, index) => (
+            <>
+              <CollectionItem
+                key={index}
+                id={drink.id}
+                className="row avatar summary-collection-header valign-wrapper"
               >
-              Remove
-              </button>
-              </span>
-            </div>
-            </div>
-            ))}
-            </Container>
-        <CheckOutBtn handleFormSubmit={this.handleFormSubmit} />
-        </Jumbotron>
+                <h4 className="col-sm-2">{drink.drinkName}</h4>
+                <h5 className="col-sm-2">
+                  ${drink.drinkPrice ? drink.drinkPrice : 1}.00
+                </h5>
+                <div
+                  className="btn-small red right"
+                  id={index}
+                  onClick={this.removeDrink}
+                >
+                  Remove
+                </div>
+              </CollectionItem>
+              <CollectionItem
+                key={drink.id}
+                id={drink.id}
+                className="row avatar order-collection-item"
+              >
+                <div className="col-sm-2">
+                  <img
+                    className="circle drink"
+                    src={drink.drinkThumb}
+                    alt={drink.drinkName}
+                  />
+                </div>
+                {drink.ingredients.length > 1 ? (
+                  <ul className="col-sm-2 summary-ingredients">
+                    {drink.ingredients.map((ingredient, i) => (
+                      <li
+                        key={i}
+                        className="row btm-0 summary-ingredients-list"
+                      >
+                        <div
+                          className="ingredient-icon black-text summary-ingredients-list-item"
+                          onClick={() => this.changeMeasure(index, i, "+")}
+                        >
+                          <Icon className="ingredient-icon">
+                            add_circle_outline
+                          </Icon>
+                        </div>
+                        <h6 className="btm-0 summary-ingredients-list-item">
+                          {ingredient.measure} {ingredient.name}
+                        </h6>
+                        <div
+                          className="ingredient-iconblack-text summary-ingredients-list-item"
+                          onClick={() => this.changeMeasure(index, i, "-")}
+                        >
+                          <Icon className="ingredient-icon">
+                            remove_circle_outline
+                          </Icon>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="col-sm-2 text-center valign-wrapper"><h5>{drink.description}</h5></div>
+                )}
+              </CollectionItem>
+            </>
+          ))}
+        </Collection>
         <NavbarWdivs />
       </>
     );
   }
 }
-export default OrderSummary;
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+export default connect(mapStateToProps, null)(OrderSummary);

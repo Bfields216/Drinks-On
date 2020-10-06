@@ -1,85 +1,126 @@
-import React, { Component, Fragment } from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  Container
-} from 'reactstrap';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import RegisterModal from './auth/RegisterModal';
-import LoginModal from './auth/LoginModal';
-import Logout from './auth/Logout';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Navbar, NavItem, Icon } from "react-materialize";
+import { connect } from "react-redux";
+import { Modal } from "reactstrap";
+import PropTypes from "prop-types";
+import RegisterModal from "./UserComponents/RegisterModal";
+import LoginModal from "./UserComponents/LoginModal";
+import PartyOptions from "./BarComponents/PartyOptions";
+import Logout from "./UserComponents/Logout";
+import SideNav from "./SideNav";
+import { toggleModal } from "../actions/userActions";
+import OmwModal from "./BarComponents/OmwModal";
+import WaitingModal from "./BarComponents/WaitingModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faGlassCheers } from "@fortawesome/free-solid-svg-icons";
+library.add(faGlassCheers);
 
 class AppNavbar extends Component {
   state = {
-    isOpen: false
+    openLogin: false,
+    openRegister: false,
+    isOpen: false,
   };
 
   static propTypes = {
-    auth: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired,
   };
 
-  toggle = () => {
+  toggleLogin = () => {
     this.setState({
-      isOpen: !this.state.isOpen
+      openLogin: !this.state.openLogin,
     });
   };
-
+  toggleRegister = () => {
+    this.setState({
+      openRegister: !this.state.openRegister,
+    });
+  };
+  renderModal() {
+    let modalType = this.props.user.modalType;
+    switch (modalType) {
+      case "login":
+        return <LoginModal />;
+      case "register":
+        return <RegisterModal />;
+      case "partyOptions":
+        return <PartyOptions />;
+      case "omw":
+        return <OmwModal />;
+      case "waiting":
+        return <WaitingModal />;
+      default:
+        return "";
+    }
+  }
   render() {
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated, data } = this.props.user;
 
-    const authLinks = (
-      <Fragment>
+    let modalType = this.props.user.modalType;
+
+    const userLinks = (
+      <>
         <NavItem>
-          <span className='navbar-text mr-3'>
-            <strong>{user ? `Welcome ${user.name}` : ''}</strong>
-          </span>
+          <strong>{data ? `Welcome ${data.name}` : ""}</strong>
         </NavItem>
         <NavItem>
           <Logout />
         </NavItem>
-      </Fragment>
+      </>
     );
 
     const guestLinks = (
-      <Fragment>
-        <NavItem>
-          <RegisterModal />
+      <>
+        <NavItem
+          onClick={() => this.props.toggleModal("register")}
+          href="#"
+          className="nav-button"
+        >
+          Register
         </NavItem>
-        <NavItem>
-          <LoginModal />
+        <NavItem
+          onClick={() => this.props.toggleModal("login")}
+          href="#"
+          className="nav-button"
+        >
+          Login
         </NavItem>
-      </Fragment>
+      </>
     );
 
     return (
-      <div>
-        <Navbar id="topnav"  dark expand='md' className="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
-          <Container>
-            <NavbarBrand href='/'>Drink On Us</NavbarBrand>
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className='ml-auto' navbar>
-                {isAuthenticated ? authLinks : guestLinks}
-              </Nav>
-            </Collapse>
-          </Container>
-        </Navbar>
-      </div>
+      <Navbar
+        fixed
+        alignLinks="right"
+        brand={
+          <Link to="/" className="brand-logo">
+            <FontAwesomeIcon icon={faGlassCheers} size="1x" />
+            {" "}Drinkson
+          </Link>
+        }
+        id="mobile-nav"
+        menuIcon={<Icon>menu</Icon>}
+        options={{
+          edge: "right",
+        }}
+        sidenav={<SideNav />}
+      >
+        {isAuthenticated ? userLinks : guestLinks}
+        <Modal
+          isOpen={modalType ? true : false}
+          toggle={() => this.props.toggleModal(false)}
+        >
+          {this.renderModal()}
+        </Modal>
+      </Navbar>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  user: state.user,
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(AppNavbar);
-
+export default connect(mapStateToProps, { toggleModal })(AppNavbar);

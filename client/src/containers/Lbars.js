@@ -1,167 +1,217 @@
 import React, { Component } from "react";
 import NavbarWdivs from "../components/NavbarWdivs";
-import Axios from "axios";
+import axios from "axios";
 import GoogleMapReact from "google-map-react";
-import MapFlag from "../components/MapFlag/MapFlag";
-import CheckinBtn from "../components/CheckinBtn";
+import MapFlag from "../components/MapFlag";
 import CheckoutBtnLB from "../components/CheckOutBtnLB";
 import API from "../utils/API";
-import {  ListGroup, ListGroupItem } from 'reactstrap';
-
-
-
-// const AnyReactComponent = ({ text }) => <div style={{ color: 'red'}}>{text}</div>;
-
-// API key AIzaSyAlHrNlmCS8c70eIYOlfkD6JijDgE5sfOc
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { ListGroup, ListGroupItem } from "reactstrap";
+//---new imports----
+import { Collapsible} from "react-materialize";
+import { storeBars } from "../actions/barsActions";
+import BarInfo from "../components/BarComponents/BarInfo"
 
 class Bars extends Component {
   state = {
+    center: {
+      lat: null,
+      lng: null,
+    },
+    zoom: 13,
     bars: [],
+    searchValue: null,
+    longitude: null,
     currentBars: [],
+    users: [],
     // disabled: false,
   };
   static defaultProps = {
     center: {
       lat: 33.7756,
-      lng: -84.3963
+      lng: -84.3963,
     },
     zoom: 13,
     // center: "uluru"
   };
-  componentDidMount() {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const mapsurl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=bars+in+Atlanta&key=AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA`;
-
-    Axios.get(proxyurl + mapsurl).then(response => {
-      console.log(response);
-      this.setState({
-        bars: response.data.results
-      });
-      console.log(this.state.bars);
-      
-    });
-  }
-
-  // loadBars = () => {
-  //   API.getBar()
-  //     .then(res => this.setState({ name: res.data }))
-  //     .catch(err => console.log(err));
-  // };
-  // handledisabled = () => {
-  //  const disabled = this.state.disabled ? disabled: true;
-   
-  // }
-  // constructor(props) {
-  //   super(props);
-  //   subscribeToTimer((err, timestamp) => this.setState({ 
-  //     timestamp 
-  //   }));
-  // }
-
-  deleteBars = id => {
-    API.deleteBar(id)
-      .then(res => this.loadBars())
-      .catch(err => console.log(err));
+  static propTypes = {
+    user: PropTypes.object.isRequired,
   };
 
-  checkin = event => {
-    event.preventDefault();
-    const index = event.target.id;
-    let currentBars = this.state.currentBars;
-    const foundBar = this.state.bars[index];
-    currentBars.push(foundBar);
+  async componentDidMount() {
+    const { coords } = await this.getUserPosition();
+    const { latitude, longitude } = await coords;
+    this.setState({ center: { lat: latitude, lng: longitude } }, () =>
+      this.searchBars()
+    );
+
+    if (this.props.user.isAuthenticated) {
+      if (typeof this.props.user.data.omwTo == 'string') {
+        this.props.toggleModal("waiting");
+      }
+    }
+  }
+  getUserPosition() {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+  }
+  searchBars = () => {
+    const latitude = this.state.center.lat;
+    const longitude = this.state.center.lng;
+
+    axios
+      .get(`/bars/search_nearby/${latitude}/${longitude}`)
+      .then((response) => this.props.storeBars(response.data))
+      .then(console.log(this.props.bars));
+  };
+
+  searchNewLocation = () => {
+    console.log(this.state.searchValue);
+    if (this.state.searchValue) {
+      const searchValue = this.state.searchValue;
+      axios.get(`bars/search/${searchValue}`).then((response) => {
+        console.log(response);
+        let latitude = response.data.results[0].geometry.location.lat;
+        let longitude = response.data.results[0].geometry.location.lng;
+        this.setState({ center: { lat: latitude, lng: longitude } }, () =>
+          this.searchBars()
+        );
+      });
+    }
+  };
+  handleInputChange = (event) => {
+    const { name, value } = event.target;
     this.setState({
-      currentBars
-    });   
-  }
+      [name]: value,
+    });
+  };
 
-  checkout = event => {
+  deleteBars = (id) => {
+    API.deleteBar(id)
+      .then((res) => this.loadBars())
+      .catch((err) => console.log(err));
+  };
+
+  checkin = (event) => {
+    if (this.props.user.isAuthenticated) {
+      const username = this.props.user.user.name;
+      event.preventDefault();
+      const index = event.target.id;
+      let currentBars = this.state.currentBars;
+      const foundBar = this.state.bars[index];
+      currentBars.push(foundBar);
+      this.setState({
+        currentBars,
+      });
+      console.log(currentBars[0].name);
+      axios
+        .put("/api/users/checkinBar", {
+          userId: username,
+          barName: currentBars[0].name,
+        })
+        .then((res) => console.log(res))
+        .catch((err) => {
+          console.log(err);
+        });
+      axios
+        .get(`/api/users/${currentBars[0].name}`)
+        .then((res) => {
+          console.log(res);
+          this.setState({
+            users: res.data.data,
+          });
+          console.log(this.state.users);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      this.props.history.push("/");
+    }
+  };
+
+  checkout = (event) => {
     event.preventDefault();
-    
-    
-    this.setState({currentBars: []});
-    
-   
-    
-  }
-
-
+    const username = this.props.user.user.name;
+    this.setState({ currentBars: [] });
+    axios
+      .put("/api/users/checkinBar", {
+        userId: username,
+        barName: "null",
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   render() {
     return (
       <>
-     <div classname="card mb-3">
-<div classname="card-img-top" id="map">
-    
-          <GoogleMapReact
-            bootstrapURLKeys={{
-              key: "AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA"
-            }}
-            defaultCenter={this.props.center}
-            defaultZoom={this.props.zoom}
-          >
-            {this.state.bars.map((bar, index) => (
-              <MapFlag
-                key={index}
-                lat={bar.geometry.location.lat}
-                lng={bar.geometry.location.lng}
-                text={bar.name}
-              />
-            ))}
-          </GoogleMapReact>
-          </div>
-         
-          
+        <div className="card mb-3">
           <div className="row">
-              <div className="col-sm-6">
-                <div className="card">
-                  <div className="card-body">
-                    <h5 class="card-title">Bars Near You</h5>
-                    <ListGroup className="list" fluid>
-                    <ListGroupItem>
-                      {this.state.bars.map((bar, index) => (
-                        <div className="row border" key={bar.id}>
-                          <div className="col-md-8">
-                          <h5>{bar.name}</h5>
-                          <p>{bar.formatted_address}</p>
-                          </div>
-                          {this.state.currentBars.length > 0 ? (""):(<CheckinBtn checkin={this.checkin} index={index}/>)  }
-                        </div>
-                      ))}
-                      </ListGroupItem>
-                      </ListGroup>
-                  </div>
+            <div className="col-12">
+              <div className="row search-bars-input">
+                <input
+                  name="searchValue"
+                  onChange={this.handleInputChange}
+                  placeholder="Enter Location"
+                  className="mb-0"
+                />
+
+                <button
+                  onClick={this.searchNewLocation}
+                  className="general-btn btn-lg white black-text mt-0"
+                  type="button"
+                >
+                  Search
+                </button>
+              </div>
+              <div className="card-img-top container" id="map">
+                <GoogleMapReact
+                  bootstrapURLKeys={{
+                    key: "AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA",
+                  }}
+                  center={this.state.center}
+                  zoom={this.state.zoom}
+                >
+                  {this.props.bars.map((bar, index) => (
+                    <MapFlag
+                      key={index}
+                      lat={bar.mapLocation.lat}
+                      lng={bar.mapLocation.lng}
+                      text={bar.name}
+                    />
+                  ))}
+                </GoogleMapReact>
+              </div>
+
+              <div className="row">
+                <div className="col-12">
+                  <h5 className="card-title text center">Bars Near You</h5>
+                  <Collapsible accordion className="list">
+                    <BarInfo bar={this.props.admin} checkin={this.checkin} />
+                    {this.props.bars.map((bar, index) => (
+                      <BarInfo key={index} bar={bar} checkin={this.checkin} />
+                    ))}
+                  </Collapsible>
                 </div>
               </div>
-              <div className="col-sm-6">
-                <div className="card">
-                  <div className="card-body">
-                    <h5 class="card-title">Current Location</h5>
-                    <ListGroup className="list" fluid>
-                    <ListGroupItem>
-                    {this.state.currentBars.map((bar, index) => (
-                      <div className="row border" key={bar.id}>
-                        <div className="col-md-8">
-                          <div className="bar-name">{bar.name}</div>
-                          <p>{bar.formatted_address}</p>
-                        </div>
-                        <CheckoutBtnLB checkout={this.checkout}/>
-                        </div>
-                      ))}
-                      </ListGroupItem>
-                      </ListGroup>
-                  </div>
-                </div>
-              </div>
-              </div>
-            
-</div>
+            </div>
+          </div>
+        </div>
         <NavbarWdivs />
-    </>
+      </>
     );
   }
 }
-
-export default Bars;
-
-
+const mapStateToProps = (state) => ({
+  user: state.user,
+  bars: state.bars,
+  admin: state.admin
+});
+export default connect(mapStateToProps, { storeBars })(Bars);
